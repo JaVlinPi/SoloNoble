@@ -1,7 +1,4 @@
 
-
-var values = {};
-
 class Array2D {
     
   constructor(height, width) {
@@ -9,6 +6,7 @@ class Array2D {
     this.startY = 0;
     this.endX = 0;
     this.endY = 0;
+    this._values = {};
   }
 
   set(x,y,value) {
@@ -25,15 +23,29 @@ class Array2D {
     else if ( y > this.endY ) {
       this.endY = y;
     }
-    values['c'+x+','+y] = value;
+    if ( this._values[x] == undefined ) {
+      this._values[x] = {};
+    }
+    this._values[x][y] = value;
   }
 
   get(x,y) {
-    if ( values['c'+x+','+y] ) {
+    if ( this._values[x] && this._values[x][y] ) {
       // console.log("values["+'c'+x+','+y+"]:"+values['c'+x+','+y]);
-      return values['c'+x+','+y];
+      return this._values[x][y];
     }
     return null;
+  }
+
+  delete(x,y) {
+    if ( this._values[x] && this._values[x][y] ) {
+      // console.log("values["+'c'+x+','+y+"]:"+values['c'+x+','+y]);
+      delete this._values[x][y];
+    }
+  }
+
+  getRandom() {
+
   }
   
   output() {

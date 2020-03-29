@@ -44,6 +44,7 @@ class GameView extends React.Component {
         // creact noble
         this.state.tileMap.set(0,0,2);
         this.state.pieceMap.set(0,0,2);
+        this.state.pieceMap.delete(0,0,2);
     }
 
     onScroll(e) {
