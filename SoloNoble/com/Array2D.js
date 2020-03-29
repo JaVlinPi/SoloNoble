@@ -12,6 +12,7 @@ class Array2D {
   }
 
   set(x,y,value) {
+    console.log(' ::::: set('+x+','+y+','+value+')');
     if ( x < this.startX ) {
       this.startX = x;
     }
@@ -29,6 +30,7 @@ class Array2D {
 
   get(x,y) {
     if ( values['c'+x+','+y] ) {
+      // console.log("values["+'c'+x+','+y+"]:"+values['c'+x+','+y]);
       return values['c'+x+','+y];
     }
     return null;

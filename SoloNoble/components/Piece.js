@@ -13,7 +13,11 @@ class Piece extends React.Component {
             left: this.props.x*TILE_SIZE,
             top: this.props.y*TILE_SIZE,
         };
-        return <View style={[styles.tile,posStyle]}/>;
+        var style = [styles.tile,posStyle];
+        if ( styles['color'+this.props.value] ) {
+            style.push(styles['color'+this.props.value]);
+        }
+        return <View style={style}/>;
     }
 
 }
@@ -29,6 +33,9 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         borderRadius: TILE_SIZE,
 
+    },
+    color2: {
+        backgroundColor: 'red',
     }
 });
 

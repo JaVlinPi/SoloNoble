@@ -11,19 +11,19 @@ class Board extends React.Component {
     }
 
     render() {
-        var map = this.props.map;
+        var board = this.props.board;
 
         var style = {
-            paddingLeft: map.startX*TILE_SIZE*-1,
-            paddingTop: map.startY*TILE_SIZE*-1,
-            width: (map.endX-map.startX+1)*TILE_SIZE+4,
-            height: (map.endY-map.startY+1)*TILE_SIZE+4,
+            paddingLeft: board.startX*TILE_SIZE*-1,
+            paddingTop: board.startY*TILE_SIZE*-1,
+            width: (board.endX-board.startX+1)*TILE_SIZE+4,
+            height: (board.endY-board.startY+1)*TILE_SIZE+4,
         }
         console.log(' ---- style:',style);
 
         return <View style={[styles.tile,style,this.props.style]}>
-            <TileMap map={this.props.map}/>
-            <Pieces map={this.props.map}/>
+            <TileMap map={this.props.board}/>
+            <Pieces map={this.props.pieces}/>
         </View>;
     }
 

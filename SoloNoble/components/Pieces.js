@@ -27,7 +27,7 @@ class Pieces extends React.Component {
         var tile;
         for ( var x = map.startX; x <= map.endX; x++ ) {
             for ( var y = map.startY; y <= map.endY; y++ ) {
-                console.log('check tile '+x+','+y);
+                // console.log('check tile '+x+','+y);
                 tile = map.get(x,y);
                 if ( tile ) tiles.push(this.createTile(x,y,tile));
             }
@@ -36,8 +36,8 @@ class Pieces extends React.Component {
     }
 
     createTile(x,y,value) {
-        console.log('createTile('+x+','+y+','+value+')');
-        return <Piece x={x} y={y}/>;
+        // console.log('createTile('+x+','+y+','+value+')');
+        return <Piece x={x} y={y} value={value}/>;
     }
 
     render() {
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
         overflow: 'visible',
         position: 'absolute',
         // backgroundColor: 'grey',
-    }
+    },
 });
 
 export default Pieces;
