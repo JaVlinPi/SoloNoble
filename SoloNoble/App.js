@@ -35,13 +35,9 @@ class App extends React.Component {
       <>
         <StatusBar barStyle="dark-content" />
         <SafeAreaView>
-          <ScrollView
-            contentInsetAdjustmentBehavior="automatic"
-            style={styles.scrollView}>
             <View style={styles.body}>
                 <GameView/>
             </View>
-          </ScrollView>
         </SafeAreaView>
       </>
     );
@@ -51,13 +47,21 @@ class App extends React.Component {
 const styles = StyleSheet.create({
   scrollView: {
     backgroundColor: Colors.lighter,
+    width: '100%',
+    height: '100%',
+    borderColor: 'yellow',
+    borderWidth: 1,
   },
   engine: {
     position: 'absolute',
     right: 0,
   },
   body: {
+    width: '100%',
+    height: '100%',
     backgroundColor: Colors.white,
+    borderColor: 'blue',
+    borderWidth: 1,
   },
   sectionContainer: {
     marginTop: 32,

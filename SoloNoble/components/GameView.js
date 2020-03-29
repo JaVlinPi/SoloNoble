@@ -1,6 +1,7 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import Array2D from "../com/Array2D";
+import TileMap from "./TileMap";
 
 class GameView extends React.Component {
 
@@ -20,11 +21,22 @@ class GameView extends React.Component {
     }
 
     render() {
-        return <View>
+        return <View style={[styles.tile]}>
             <Text>This is the game view</Text>
+            <TileMap map={this.state.tileMap}/>
         </View>;
     }
 
 }
+
+const styles = StyleSheet.create({
+    tile: {
+        width: '100%',
+        height: '100%',
+        borderColor: 'red',
+        borderWidth: 1,
+        overflow: 'visible',
+    }
+});
 
 export default GameView;
