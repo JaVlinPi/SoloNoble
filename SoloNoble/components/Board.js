@@ -2,6 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import TileMap from "./TileMap";
 import { TILE_SIZE } from "../constants";
+import Pieces from "./Pieces";
 
 class Board extends React.Component {
 
@@ -22,6 +23,7 @@ class Board extends React.Component {
 
         return <View style={[styles.tile,style,this.props.style]}>
             <TileMap map={this.props.map}/>
+            <Pieces map={this.props.map}/>
         </View>;
     }
 
