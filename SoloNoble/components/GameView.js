@@ -2,6 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet, TouchableWithoutFeedback, ScrollView } from "react-native";
 import Array2D from "../com/Array2D";
 import TileMap from "./TileMap";
+import Board from "./Board";
 
 class GameView extends React.Component {
 
@@ -13,6 +14,16 @@ class GameView extends React.Component {
         tileMap.set(1,0,1);
         tileMap.set(1,2,1);
         tileMap.set(1,-1,1);
+        tileMap.set(-1,0,1);
+        tileMap.set(-1,2,1);
+        tileMap.set(-1,-1,1);
+        tileMap.set(2,0,1);
+        tileMap.set(2,2,1);
+        tileMap.set(-1,3,1);
+        tileMap.set(2,-1,1);
+        tileMap.set(2,-1,1);
+        tileMap.set(2,-4,1);
+        tileMap.set(4,-1,1);
 
         tileMap.output();
 
@@ -24,8 +35,8 @@ class GameView extends React.Component {
     }
 
     onScroll(e) {
-        console.log('onScroll(e)');
-        console.log('e:',e);
+        // console.log('onScroll(e)');
+        // console.log('e:',e);
 
     }
 
@@ -39,10 +50,7 @@ class GameView extends React.Component {
             <Text>This is the game view</Text>
             <ScrollView nestedScrollEnabled style={styles.scroll} onScroll={this.onScroll}>
                 <ScrollView nestedScrollEnabled style={styles.scroll} onScroll={this.onScroll} horizontal>
-                    <Text>This is the game view</Text>
-                    <View style={[styles.board,boardStyle]}>
-                        <TileMap map={this.state.tileMap}/>
-                    </View>
+                    <Board map={this.state.tileMap}/>
                 </ScrollView>
             </ScrollView>
         </View>;

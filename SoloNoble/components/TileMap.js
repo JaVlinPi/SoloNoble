@@ -10,8 +10,8 @@ class TileMap extends React.Component {
 
         this.state = {
             style: {
-                width: 1300,
-                height: 1300,
+                // width: 1300,
+                // height: 1300,
             },
         }
 
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         overflow: 'visible',
         position: 'relative',
-        backgroundColor: 'grey',
+        // backgroundColor: 'grey',
     }
 });
 
