@@ -3,11 +3,15 @@ import { View, Text, StyleSheet, TouchableWithoutFeedback, ScrollView } from "re
 import Array2D from "../com/Array2D";
 import TileMap from "./TileMap";
 import Board from "./Board";
+import PieceData from "../com/model/PieceData";
 
 class GameView extends React.Component {
 
     constructor() {
         super();
+
+        console.log(':::::::::::::::::::::::::::::');
+        console.log(':::::::::::::::::::::::::::::');
 
         // var tileMap = new Array2D();
         // tileMap.set(0,0,1);
@@ -26,7 +30,7 @@ class GameView extends React.Component {
         // tileMap.set(4,-1,1);
         
         var tileMap = new Array2D();
-        var pieceMap = new Array2D();
+        // var pieceMap = new Array2D();
 
         tileMap.output();
 
@@ -34,7 +38,8 @@ class GameView extends React.Component {
             x: 200,
             y: 100,
             tileMap: tileMap,
-            pieceMap: pieceMap,
+            // pieceMap: pieceMap,
+            pieceMap: PieceData.getArray2D(),
         }
 
         this.createLevel();
@@ -42,9 +47,41 @@ class GameView extends React.Component {
 
     createLevel() {
         // creact noble
-        this.state.tileMap.set(0,0,2);
-        this.state.pieceMap.set(0,0,2);
-        this.state.pieceMap.delete(0,0,2);
+        this.addPiece(0,0,2);
+
+        // generate moves
+        var moveNum = 2;
+        for ( var i = 0; i < moveNum; i++ ) {
+            this.createMove();
+        }
+    }
+
+    addPiece(x,y,value) {
+        PieceData.create(x,y,value);
+        this.state.tileMap.set(x,y,value);
+    }
+
+    createMove() {
+        console.log(' > createMove()');
+        var pieces = PieceData.getPieces();
+        console.log('pieces:',pieces);
+        var piece = pieces[Math.floor(pieces.length*Math.random())];
+        var dirX, dirY;
+        if ( Math.random() > 0.5 ) {
+            dirX = Math.round(Math.random())*2-1;
+            dirY = 0;
+        }
+        else {
+            dirY = Math.round(Math.random())*2-1;
+            dirX = 0;
+        }
+        console.log('piece:',piece);
+        console.log('piece.moveTo:',piece.moveTo);
+        if ( this.state.tileMap.get(piece.x+dirX,piece.y+dirY) == null ) {
+            this.state.tileMap.set(piece.x+dirX,piece.y+dirY,1);
+        }
+        piece.moveTo(piece.x+dirX,piece.y+dirY);
+        // piece.moveTo(piece.x,piece.y+1);
     }
 
     onScroll(e) {

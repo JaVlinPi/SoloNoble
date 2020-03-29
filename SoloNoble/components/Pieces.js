@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import Tile from './Tile';
 import { TILE_SIZE } from "../constants";
-import Piece from "./Piece";
+import Piece from "./PieceView";
 
 class Pieces extends React.Component {
 
@@ -29,15 +29,15 @@ class Pieces extends React.Component {
             for ( var y = map.startY; y <= map.endY; y++ ) {
                 // console.log('check tile '+x+','+y);
                 tile = map.get(x,y);
-                if ( tile ) tiles.push(this.createTile(x,y,tile));
+                if ( tile ) tiles.push(this.createPiece(x,y,tile));
             }
         }
         return tiles;
     }
 
-    createTile(x,y,value) {
-        // console.log('createTile('+x+','+y+','+value+')');
-        return <Piece x={x} y={y} value={value}/>;
+    createPiece(x,y,piece) {
+        console.log(' +++ createPiece('+x+','+y+','+piece+')');
+        return <Piece x={x} y={y} piece={piece}/>;
     }
 
     render() {

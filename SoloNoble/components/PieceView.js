@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { TILE_SIZE } from "../constants";
 
-class Piece extends React.Component {
+class PieceView extends React.Component {
 
     constructor() {
         super();
@@ -14,8 +14,10 @@ class Piece extends React.Component {
             top: this.props.y*TILE_SIZE,
         };
         var style = [styles.tile,posStyle];
-        if ( styles['color'+this.props.value] ) {
-            style.push(styles['color'+this.props.value]);
+        console.log('this.props.piece:',this.props.piece);
+        console.log('this.props.piece.value:',this.props.piece.value);
+        if ( styles['color'+this.props.piece.value] ) {
+            style.push(styles['color'+this.props.piece.value]);
         }
         return <View style={style}/>;
     }
@@ -39,4 +41,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default Piece;
+export default PieceView;

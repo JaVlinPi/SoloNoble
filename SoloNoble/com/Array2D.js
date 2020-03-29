@@ -7,6 +7,7 @@ class Array2D {
     this.endX = 0;
     this.endY = 0;
     this._values = {};
+    this._coords = [];
   }
 
   set(x,y,value) {
@@ -27,6 +28,9 @@ class Array2D {
       this._values[x] = {};
     }
     this._values[x][y] = value;
+    if ( this._coords.indexOf(x+','+y) == -1 ) {
+      this._coords.push(x+','+y);
+    }
   }
 
   get(x,y) {
@@ -41,11 +45,20 @@ class Array2D {
     if ( this._values[x] && this._values[x][y] ) {
       // console.log("values["+'c'+x+','+y+"]:"+values['c'+x+','+y]);
       delete this._values[x][y];
+      var i = this._coords.indexOf(x+','+y);
+      if ( i != -1 ) {
+        this._coords.splice(i,1);
+      }
     }
   }
 
-  getRandom() {
+  getRandomCoord() {
+    var index = Math.floor( Math.random() * this._coords.length );
+    return this._coords[index];
+  }
 
+  getRandom() {
+    var index = Math.random() * this._coords.length;
   }
   
   output() {

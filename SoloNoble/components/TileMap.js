@@ -19,8 +19,8 @@ class TileMap extends React.Component {
     }
 
     getTileMap() {
-        console.log('TileMap.getTileMap()');
-        console.log('this.props.map:',this.props.map);
+        // console.log('TileMap.getTileMap()');
+        // console.log('this.props.map:',this.props.map);
         var map = this.props.map;
         var tiles = [];
         var tile;
