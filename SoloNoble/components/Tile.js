@@ -25,6 +25,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         width: TILE_SIZE,
         height: TILE_SIZE,
+        backgroundColor: 'white',
 
     }
 });

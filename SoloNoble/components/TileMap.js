@@ -8,6 +8,13 @@ class TileMap extends React.Component {
     constructor() {
         super();
 
+        this.state = {
+            style: {
+                width: 1300,
+                height: 1300,
+            },
+        }
+
         this.getTileMap = this.getTileMap.bind(this);
     }
 
@@ -34,8 +41,7 @@ class TileMap extends React.Component {
 
     render() {
         var map = this.props.map;
-        return <View style={[styles.tile]}>
-            <Text>This is the game view</Text>
+        return <View style={[styles.tile,this.state.style,this.props.style]}>
             {this.getTileMap()}
         </View>;
     }
@@ -44,9 +50,11 @@ class TileMap extends React.Component {
 
 const styles = StyleSheet.create({
     tile: {
-        borderColor: 'black',
+        borderColor: 'orange',
         borderWidth: 1,
         overflow: 'visible',
+        position: 'relative',
+        backgroundColor: 'grey',
     }
 });
 
