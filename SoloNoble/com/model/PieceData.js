@@ -7,12 +7,12 @@ var pieceMap = new Array2D();
 class PieceData {
 
     static getArray2D() {
-        console.log('getArray2D()');
+        // console.log('getArray2D()');
         return pieceMap;
     }
 
     static create(x,y,value) {
-        console.log(' @@@@@@@@ PieceData.create('+x+','+y+','+value+')');
+        // console.log(' @@@@@@@@ PieceData.create('+x+','+y+','+value+')');
         var piece = new PieceData(x,y,value);
         pieceMap.set(x,y,piece);
         pieces.push(piece);
@@ -28,7 +28,7 @@ class PieceData {
     }
 
     constructor(x,y,value) {
-        console.log('new PieceData('+x+','+y+','+value+')');
+        // console.log('new PieceData('+x+','+y+','+value+')');
         this.x = x;
         this.y = y;
         this.value = value;

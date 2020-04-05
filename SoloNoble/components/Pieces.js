@@ -20,8 +20,8 @@ class Pieces extends React.Component {
     }
 
     getPieces() {
-        console.log('Pieces.getPieces()');
-        console.log('this.props.map:',this.props.map);
+        // console.log('Pieces.getPieces()');
+        // console.log('this.props.map:',this.props.map);
         var map = this.props.map;
         var tiles = [];
         var tile;
@@ -36,7 +36,7 @@ class Pieces extends React.Component {
     }
 
     createPiece(x,y,piece) {
-        console.log(' +++ createPiece('+x+','+y+','+piece+')');
+        // console.log(' +++ createPiece('+x+','+y+','+piece+')');
         return <Piece x={x} y={y} piece={piece}/>;
     }
 

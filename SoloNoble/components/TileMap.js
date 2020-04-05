@@ -35,7 +35,7 @@ class TileMap extends React.Component {
     }
 
     createTile(x,y,value) {
-        console.log('createTile('+x+','+y+','+value+')');
+        // console.log('createTile('+x+','+y+','+value+')');
         return <Tile x={x} y={y} value={value}/>;
     }
 

@@ -5,6 +5,7 @@ import TileMap from "./TileMap";
 import Board from "./Board";
 import BasicButton from "./BasicButton";
 import PieceData from "../com/model/PieceData";
+import { KEEP_SMALL_FACTOR } from "../constants";
 
 class GameView extends React.Component {
 
@@ -21,21 +22,22 @@ class GameView extends React.Component {
         var tileMap = new Array2D();
         // var pieceMap = new Array2D();
 
-        tileMap.output();
-
         this.state = {
             x: 200,
             y: 100,
             tileMap: tileMap,
             // pieceMap: pieceMap,
             pieceMap: PieceData.getArray2D(),
-            moveNum: 6,
+            moveNum: 2,
+            keepSmall: true,
         }
 
         this.createLevel();
     }
 
     createLevel() {
+        console.log(':::::::::::::::::::::::::::::');
+        console.log(':::::::::::::::::::::::::::::');
         // creact noble
         this.addPiece(0,0,2);
 
@@ -52,11 +54,14 @@ class GameView extends React.Component {
     }
 
     createMove() {
-        console.log(' > createMove()');
+        // console.log(' > createMove()');
         var pieces = PieceData.getPieces();
         var foundMove = false;
-        console.log('pieces:',pieces);
+        // console.log('pieces:',pieces);
         var dirX, dirY;
+        // var keepSmallSize = Math.max(3,Math.sqrt(this.state.moveNum*1.5+10));
+        var keepSmallSize = Math.max(3,Math.sqrt(this.state.moveNum)+2);
+        console.log('keepSmallSize:',keepSmallSize);
         while ( !foundMove ) {
             var piece = pieces[Math.floor(pieces.length*Math.random())];
             if ( Math.random() > 0.5 ) {
@@ -67,6 +72,33 @@ class GameView extends React.Component {
                 dirY = Math.round(Math.random())*2-1;
                 dirX = 0;
             }
+            if ( this.state.keepSmall ) {
+                // this.state.tileMap.output();
+                // console.log('x:',(piece.x+dirX*2));
+                // console.log('y:',(piece.y+dirY*2));
+                var newX = piece.x+dirX*2;
+                var startX = Math.min(newX,this.state.tileMap.startX);
+                var endX = Math.max(newX,this.state.tileMap.endX);
+                var newWidth = endX - startX + 1;
+                // console.log('newX:',newX);
+                // console.log('startX:',startX);
+                // console.log('endX:',endX);
+                // console.log(' - newWidth:',newWidth);
+                if ( newWidth > keepSmallSize ) {
+                    continue;
+                }
+                var newY = piece.y+dirY*2;
+                var startY = Math.min(newY,this.state.tileMap.startY);
+                var endY = Math.max(newY,this.state.tileMap.endY);
+                var newHeight = endY - startY + 1;
+                // console.log('newY:',newY);
+                // console.log('startY:',startY);
+                // console.log('endY:',endY);
+                // console.log(' - newHeight:',newHeight);
+                if ( newHeight > keepSmallSize ) {
+                    continue;
+                }
+            }
             if ( this.state.pieceMap.get(piece.x+dirX,piece.y+dirY) != null ) {
                 continue;
             }
@@ -75,8 +107,8 @@ class GameView extends React.Component {
             }
             foundMove = true;
         }
-        console.log('piece:',piece);
-        console.log('piece.moveTo:',piece.moveTo);
+        // console.log('piece:',piece);
+        // console.log('piece.moveTo:',piece.moveTo);
         if ( this.state.tileMap.get(piece.x+dirX,piece.y+dirY) == null ) {
             this.state.tileMap.set(piece.x+dirX,piece.y+dirY,1);
         }
@@ -86,6 +118,8 @@ class GameView extends React.Component {
         PieceData.create(piece.x+dirX,piece.y+dirY,1);
         piece.moveTo(piece.x+dirX*2,piece.y+dirY*2);
         // piece.moveTo(piece.x,piece.y+1);
+
+        console.log('----------------------');
     }
 
     onScroll(e) {
@@ -95,7 +129,7 @@ class GameView extends React.Component {
     }
 
     onReset() {
-        console.log('onReset');
+        // console.log('onReset');
         PieceData.clear();
         this.state.tileMap.clear();
         this.createLevel();
@@ -115,7 +149,7 @@ class GameView extends React.Component {
     }
 
     render() {
-        console.log('this.state:',this.state);
+        // console.log('this.state:',this.state);
         var boardStyle = {
             // left: this.state.x,
             // top: this.state.y,

@@ -6,7 +6,7 @@ class Array2D {
   }
 
   set(x,y,value) {
-    console.log(' ::::: set('+x+','+y+','+value+')');
+    // console.log(' ::::: set('+x+','+y+','+value+')');
     if ( x < this.startX ) {
       this.startX = x;
     }

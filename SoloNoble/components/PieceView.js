@@ -14,8 +14,8 @@ class PieceView extends React.Component {
             top: this.props.y*TILE_SIZE,
         };
         var style = [styles.tile,posStyle];
-        console.log('this.props.piece:',this.props.piece);
-        console.log('this.props.piece.value:',this.props.piece.value);
+        // console.log('this.props.piece:',this.props.piece);
+        // console.log('this.props.piece.value:',this.props.piece.value);
         if ( styles['color'+this.props.piece.value] ) {
             style.push(styles['color'+this.props.piece.value]);
         }
