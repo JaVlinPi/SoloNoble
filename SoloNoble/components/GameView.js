@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, TouchableWithoutFeedback, ScrollView, Button } 
 import Array2D from "../com/Array2D";
 import TileMap from "./TileMap";
 import Board from "./Board";
+import BasicButton from "./BasicButton";
 import PieceData from "../com/model/PieceData";
 
 class GameView extends React.Component {
@@ -14,6 +15,8 @@ class GameView extends React.Component {
         console.log(':::::::::::::::::::::::::::::');
 
         this.onReset = this.onReset.bind(this);
+        this.addTurn = this.addTurn.bind(this);
+        this.minusTurn = this.minusTurn.bind(this);
         
         var tileMap = new Array2D();
         // var pieceMap = new Array2D();
@@ -26,6 +29,7 @@ class GameView extends React.Component {
             tileMap: tileMap,
             // pieceMap: pieceMap,
             pieceMap: PieceData.getArray2D(),
+            moveNum: 6,
         }
 
         this.createLevel();
@@ -36,8 +40,8 @@ class GameView extends React.Component {
         this.addPiece(0,0,2);
 
         // generate moves
-        var moveNum = 6;
-        for ( var i = 0; i < moveNum; i++ ) {
+        // var moveNum = 6;
+        for ( var i = 0; i < this.state.moveNum; i++ ) {
             this.createMove();
         }
     }
@@ -98,6 +102,18 @@ class GameView extends React.Component {
         this.forceUpdate();
     }
 
+    addTurn() {
+        this.setState({
+            moveNum: this.state.moveNum+1,
+        });
+    }
+
+    minusTurn() {
+        this.setState({
+            moveNum: this.state.moveNum-1,
+        });
+    }
+
     render() {
         console.log('this.state:',this.state);
         var boardStyle = {
@@ -111,8 +127,20 @@ class GameView extends React.Component {
                     <Board board={this.state.tileMap} pieces={this.state.pieceMap}/>
                 </ScrollView>
             </ScrollView>
-            <Button title="Reset" onPress={this.onReset}>
-            </Button>
+            <View style={styles.row}>
+                <Text>{'Turns: '+this.state.moveNum}</Text>
+                <BasicButton
+                    style={styles.smallBtn}
+                    text="-"
+                    onPress={this.minusTurn}
+                />
+                <BasicButton
+                    style={styles.smallBtn}
+                    text="+"
+                    onPress={this.addTurn}
+                />
+            </View>
+            <Button title="Reset" onPress={this.onReset}/>
         </View>;
     }
 
@@ -138,6 +166,13 @@ const styles = StyleSheet.create({
         // borderWidth: 1,
         // overflow: 'visible',
         // position: 'relative'
+    },
+    row: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    smallBtn: {
+        width: 30,
     }
 });
 
