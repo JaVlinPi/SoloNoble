@@ -8,6 +8,19 @@ class Board extends React.Component {
 
     constructor() {
         super();
+
+
+        this.state = {
+            selected: null,
+        }
+
+        this.onSelect = this.onSelect.bind(this);
+    }
+
+    onSelect(piece) {
+        this.setState({
+            selected: piece,
+        })
     }
 
     render() {
@@ -23,7 +36,11 @@ class Board extends React.Component {
 
         return <View style={[styles.tile,style,this.props.style]}>
             <TileMap map={this.props.board}/>
-            <Pieces map={this.props.pieces}/>
+            <Pieces
+                map={this.props.pieces}
+                onSelect={this.onSelect}
+                selected={this.state.selected}
+            />
         </View>;
     }
 

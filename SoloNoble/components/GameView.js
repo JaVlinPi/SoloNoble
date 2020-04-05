@@ -150,15 +150,14 @@ class GameView extends React.Component {
 
     render() {
         // console.log('this.state:',this.state);
-        var boardStyle = {
-            // left: this.state.x,
-            // top: this.state.y,
-        };
         return <View style={[styles.main]}>
             <Text>This is the game view</Text>
             <ScrollView nestedScrollEnabled style={styles.scroll} onScroll={this.onScroll}>
                 <ScrollView nestedScrollEnabled style={styles.scroll} onScroll={this.onScroll} horizontal>
-                    <Board board={this.state.tileMap} pieces={this.state.pieceMap}/>
+                    <Board
+                        board={this.state.tileMap}
+                        pieces={this.state.pieceMap}
+                    />
                 </ScrollView>
             </ScrollView>
             <View style={styles.row}>

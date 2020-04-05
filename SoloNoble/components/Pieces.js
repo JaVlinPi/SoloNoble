@@ -36,8 +36,12 @@ class Pieces extends React.Component {
     }
 
     createPiece(x,y,piece) {
-        // console.log(' +++ createPiece('+x+','+y+','+piece+')');
-        return <Piece x={x} y={y} piece={piece}/>;
+        console.log(' +++ createPiece('+x+','+y+',piece)');
+        console.log('piece:',piece);
+        console.log('this.props.selected:',this.props.selected);
+        var isSeleted = this.props.selected == piece;
+        console.log('isSeleted:',isSeleted);
+        return <Piece x={x} y={y} piece={piece} onSelect={this.props.onSelect} isSelected={isSeleted}/>;
     }
 
     render() {

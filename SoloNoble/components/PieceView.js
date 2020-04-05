@@ -1,17 +1,25 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableHighlight } from "react-native";
 import { TILE_SIZE } from "../constants";
 
 class PieceView extends React.Component {
 
     constructor() {
         super();
+
+        this.onSelect = this.onSelect.bind(this);
+    }
+
+    onSelect() {
+        this.props.onSelect(this.props.piece);
     }
 
     render() {
+        console.log(' - this.props.isSelected:',this.props.isSelected);
         var posStyle = {
             left: this.props.x*TILE_SIZE,
             top: this.props.y*TILE_SIZE,
+            borderColor: this.props.isSelected ? 'blue' : 'black',
         };
         var style = [styles.tile,posStyle];
         // console.log('this.props.piece:',this.props.piece);
@@ -19,7 +27,9 @@ class PieceView extends React.Component {
         if ( styles['color'+this.props.piece.value] ) {
             style.push(styles['color'+this.props.piece.value]);
         }
-        return <View style={style}/>;
+        return <TouchableHighlight style={style} onPress={this.onSelect}>
+                    <View/>
+                </TouchableHighlight>;
     }
 
 }
