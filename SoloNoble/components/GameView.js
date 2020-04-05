@@ -50,7 +50,7 @@ class GameView extends React.Component {
         this.addPiece(0,0,2);
 
         // generate moves
-        var moveNum = 2;
+        var moveNum = 3;
         for ( var i = 0; i < moveNum; i++ ) {
             this.createMove();
         }
@@ -64,23 +64,37 @@ class GameView extends React.Component {
     createMove() {
         console.log(' > createMove()');
         var pieces = PieceData.getPieces();
+        var foundMove = false;
         console.log('pieces:',pieces);
-        var piece = pieces[Math.floor(pieces.length*Math.random())];
         var dirX, dirY;
-        if ( Math.random() > 0.5 ) {
-            dirX = Math.round(Math.random())*2-1;
-            dirY = 0;
-        }
-        else {
-            dirY = Math.round(Math.random())*2-1;
-            dirX = 0;
+        while ( !foundMove ) {
+            var piece = pieces[Math.floor(pieces.length*Math.random())];
+            if ( Math.random() > 0.5 ) {
+                dirX = Math.round(Math.random())*2-1;
+                dirY = 0;
+            }
+            else {
+                dirY = Math.round(Math.random())*2-1;
+                dirX = 0;
+            }
+            if ( this.state.pieceMap.get(piece.x+dirX,piece.y+dirY) != null ) {
+                continue;
+            }
+            if ( this.state.pieceMap.get(piece.x+dirX*2,piece.y+dirY*2) != null ) {
+                continue;
+            }
+            foundMove = true;
         }
         console.log('piece:',piece);
         console.log('piece.moveTo:',piece.moveTo);
         if ( this.state.tileMap.get(piece.x+dirX,piece.y+dirY) == null ) {
             this.state.tileMap.set(piece.x+dirX,piece.y+dirY,1);
         }
-        piece.moveTo(piece.x+dirX,piece.y+dirY);
+        if ( this.state.tileMap.get(piece.x+dirX*2,piece.y+dirY*2) == null ) {
+            this.state.tileMap.set(piece.x+dirX*2,piece.y+dirY*2,1);
+        }
+        PieceData.create(piece.x+dirX,piece.y+dirY,1);
+        piece.moveTo(piece.x+dirX*2,piece.y+dirY*2);
         // piece.moveTo(piece.x,piece.y+1);
     }
 
