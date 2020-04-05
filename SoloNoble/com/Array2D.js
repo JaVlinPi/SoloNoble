@@ -1,13 +1,8 @@
 
 class Array2D {
     
-  constructor(height, width) {
-    this.startX = 0;
-    this.startY = 0;
-    this.endX = 0;
-    this.endY = 0;
-    this._values = {};
-    this._coords = [];
+  constructor() {
+    this.clear();
   }
 
   set(x,y,value) {
@@ -66,6 +61,15 @@ class Array2D {
     console.log('Dimensions:');
     console.log('X: '+this.startX+' - '+this.endX);
     console.log('Y: '+this.startY+' - '+this.endY);
+  }
+
+  clear() {
+    this.startX = 0;
+    this.startY = 0;
+    this.endX = 0;
+    this.endY = 0;
+    this._values = {};
+    this._coords = [];
   }
 }
 

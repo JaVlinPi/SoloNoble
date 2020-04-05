@@ -22,6 +22,11 @@ class PieceData {
         return pieces;
     }
 
+    static clear() {
+        pieceMap.clear();
+        pieces = [];
+    }
+
     constructor(x,y,value) {
         console.log('new PieceData('+x+','+y+','+value+')');
         this.x = x;

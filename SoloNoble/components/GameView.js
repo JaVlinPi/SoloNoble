@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableWithoutFeedback, ScrollView } from "react-native";
+import { View, Text, StyleSheet, TouchableWithoutFeedback, ScrollView, Button } from "react-native";
 import Array2D from "../com/Array2D";
 import TileMap from "./TileMap";
 import Board from "./Board";
@@ -13,21 +13,7 @@ class GameView extends React.Component {
         console.log(':::::::::::::::::::::::::::::');
         console.log(':::::::::::::::::::::::::::::');
 
-        // var tileMap = new Array2D();
-        // tileMap.set(0,0,1);
-        // tileMap.set(1,0,1);
-        // tileMap.set(1,2,1);
-        // tileMap.set(1,-1,1);
-        // tileMap.set(-1,0,1);
-        // tileMap.set(-1,2,1);
-        // tileMap.set(-1,-1,1);
-        // tileMap.set(2,0,1);
-        // tileMap.set(2,2,1);
-        // tileMap.set(-1,3,1);
-        // tileMap.set(2,-1,1);
-        // tileMap.set(2,-1,1);
-        // tileMap.set(2,-4,1);
-        // tileMap.set(4,-1,1);
+        this.onReset = this.onReset.bind(this);
         
         var tileMap = new Array2D();
         // var pieceMap = new Array2D();
@@ -104,6 +90,14 @@ class GameView extends React.Component {
 
     }
 
+    onReset() {
+        console.log('onReset');
+        PieceData.clear();
+        this.state.tileMap.clear();
+        this.createLevel();
+        this.forceUpdate();
+    }
+
     render() {
         console.log('this.state:',this.state);
         var boardStyle = {
@@ -117,6 +111,8 @@ class GameView extends React.Component {
                     <Board board={this.state.tileMap} pieces={this.state.pieceMap}/>
                 </ScrollView>
             </ScrollView>
+            <Button title="Reset" onPress={this.onReset}>
+            </Button>
         </View>;
     }
 
