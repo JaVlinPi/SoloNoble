@@ -16,8 +16,8 @@ class Board extends React.Component {
         var style = {
             paddingLeft: board.startX*TILE_SIZE*-1,
             paddingTop: board.startY*TILE_SIZE*-1,
-            width: (board.endX-board.startX+1)*TILE_SIZE+4,
-            height: (board.endY-board.startY+1)*TILE_SIZE+4,
+            width: (board.endX-board.startX+1)*TILE_SIZE+20,
+            height: (board.endY-board.startY+1)*TILE_SIZE+20,
         }
         console.log(' ---- style:',style);
 
@@ -32,11 +32,11 @@ class Board extends React.Component {
 const styles = StyleSheet.create({
     tile: {
         borderColor: 'green',
-        borderWidth: 1,
+        borderWidth: 10,
         overflow: 'visible',
         position: 'relative',
         backgroundColor: 'grey',
-        margin: 10,
+        margin: 20,
     }
 });
 

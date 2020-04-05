@@ -57,8 +57,8 @@ class Pieces extends React.Component {
 
 const styles = StyleSheet.create({
     tile: {
-        borderColor: 'purple',
-        borderWidth: 1,
+        // borderColor: 'purple',
+        // borderWidth: 1,
         overflow: 'visible',
         position: 'absolute',
         // backgroundColor: 'grey',

@@ -50,8 +50,8 @@ class TileMap extends React.Component {
 
 const styles = StyleSheet.create({
     tile: {
-        borderColor: 'orange',
-        borderWidth: 1,
+        // borderColor: 'orange',
+        // borderWidth: 1,
         overflow: 'visible',
         position: 'relative',
         // backgroundColor: 'grey',

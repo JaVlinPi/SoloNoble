@@ -50,7 +50,7 @@ class GameView extends React.Component {
         this.addPiece(0,0,2);
 
         // generate moves
-        var moveNum = 3;
+        var moveNum = 6;
         for ( var i = 0; i < moveNum; i++ ) {
             this.createMove();
         }
