@@ -133,7 +133,8 @@ class GameView extends React.Component {
         PieceData.clear();
         this.state.tileMap.clear();
         this.createLevel();
-        this.forceUpdate();
+        Board.clearSelection();
+        // this.forceUpdate();
     }
 
     addTurn() {

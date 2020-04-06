@@ -1,11 +1,18 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableHighlight } from "react-native";
 import { TILE_SIZE } from "../constants";
 
 class Tile extends React.Component {
 
     constructor() {
         super();
+    }
+
+    onSelect() {
+        this.props.onSelect({
+            x: this.props.x,
+            y: this.props.yd,
+        });
     }
 
     render() {
@@ -16,6 +23,12 @@ class Tile extends React.Component {
         var style = [styles.tile,posStyle];
         if ( styles['color'+this.props.value] ) {
             style.push(styles['color'+this.props.value]);
+        }
+        if ( this.props.canSelect ) {
+            style.push(styles.selStyle);
+            return <TouchableHighlight style={style} onPress={this.onSelect}>
+                <View/>
+            </TouchableHighlight>;
         }
         return <View style={style}/>;
     }
@@ -31,6 +44,10 @@ const styles = StyleSheet.create({
         height: TILE_SIZE,
         backgroundColor: 'white',
 
+    },
+    selStyle: {
+        borderColor: 'blue',
+        borderWidth: 10,
     },
     color2: {
         backgroundColor: 'yellow',

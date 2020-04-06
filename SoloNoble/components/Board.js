@@ -4,10 +4,19 @@ import TileMap from "./TileMap";
 import { TILE_SIZE } from "../constants";
 import Pieces from "./Pieces";
 
+var _instance;
+
 class Board extends React.Component {
+
+    static clearSelection() {
+        _instance.setState({
+            selected: null,
+        })
+    }
 
     constructor() {
         super();
+        _instance = this;
 
 
         this.state = {
@@ -23,7 +32,13 @@ class Board extends React.Component {
         })
     }
 
+    onTileSelect(tile) {
+        console.log('onTileSelect(tile)');
+        console.log('tile:',tile);
+    }
+
     render() {
+        console.log('################### Board.render()');
         var board = this.props.board;
 
         var style = {
@@ -35,7 +50,11 @@ class Board extends React.Component {
         // console.log(' ---- style:',style);
 
         return <View style={[styles.tile,style,this.props.style]}>
-            <TileMap map={this.props.board}/>
+            <TileMap
+                map={this.props.board}
+                onSelect={this.onTileSelect}
+                selected={this.state.selected}
+            />
             <Pieces
                 map={this.props.pieces}
                 onSelect={this.onSelect}
