@@ -52,8 +52,8 @@ class Board extends React.Component {
         if ( PieceData.getArray2D().get(x,y) ) {
             PieceData.getArray2D().delete(x,y);
             sel.moveTo(tile.x,tile.y);
-            this.clearSelection();
-            // this.forceUpdate();
+            // this.clearSelection();
+            this.forceUpdate();
         }
         else {
             throw('invalid move, no piece to jump');
