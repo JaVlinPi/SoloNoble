@@ -152,7 +152,6 @@ class GameView extends React.Component {
     render() {
         // console.log('this.state:',this.state);
         return <View style={[styles.main]}>
-            <Text>This is the game view</Text>
             <ScrollView nestedScrollEnabled style={styles.scroll} onScroll={this.onScroll}>
                 <ScrollView nestedScrollEnabled style={styles.scroll} onScroll={this.onScroll} horizontal>
                     <Board
@@ -162,7 +161,7 @@ class GameView extends React.Component {
                 </ScrollView>
             </ScrollView>
             <View style={styles.row}>
-                <Text>{'Turns: '+this.state.moveNum}</Text>
+                <Text>{'Pieces: '+(this.state.moveNum+1)}</Text>
                 <BasicButton
                     style={styles.smallBtn}
                     text="-"
