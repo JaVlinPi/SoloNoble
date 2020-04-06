@@ -6,12 +6,14 @@ class Tile extends React.Component {
 
     constructor() {
         super();
+
+        this.onSelect = this.onSelect.bind(this);
     }
 
     onSelect() {
         this.props.onSelect({
             x: this.props.x,
-            y: this.props.yd,
+            y: this.props.y,
         });
     }
 

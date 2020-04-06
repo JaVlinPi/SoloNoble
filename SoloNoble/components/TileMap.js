@@ -17,6 +17,7 @@ class TileMap extends React.Component {
         }
 
         this.getTileMap = this.getTileMap.bind(this);
+        this.createTile = this.createTile.bind(this);
     }
 
     getTileMap() {
