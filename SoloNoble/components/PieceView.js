@@ -15,7 +15,7 @@ class PieceView extends React.Component {
     }
 
     render() {
-        console.log(' - this.props.isSelected:',this.props.isSelected);
+        // console.log(' - this.props.isSelected:',this.props.isSelected);
         var posStyle = {
             left: this.props.x*TILE_SIZE,
             top: this.props.y*TILE_SIZE,

@@ -38,13 +38,20 @@ class GameView extends React.Component {
     createLevel() {
         console.log(':::::::::::::::::::::::::::::');
         console.log(':::::::::::::::::::::::::::::');
+        var boardWidth = Math.max(3,(Math.sqrt(this.state.moveNum)+2)*0.9);
+        var boardHeight = Math.max(3,(Math.sqrt(this.state.moveNum)+2)*1);
+        console.log('boardWidth:',boardWidth);
+        console.log('boardHeight:',boardHeight);
         // creact noble
         this.addPiece(0,0,2);
 
         // generate moves
         // var moveNum = 6;
         for ( var i = 0; i < this.state.moveNum; i++ ) {
-            this.createMove();
+            if ( !this.createMove() ) {
+                this.onReset();
+                return;
+            }
         }
     }
 
@@ -60,9 +67,16 @@ class GameView extends React.Component {
         // console.log('pieces:',pieces);
         var dirX, dirY;
         // var keepSmallSize = Math.max(3,Math.sqrt(this.state.moveNum*1.5+10));
-        var keepSmallSize = Math.max(3,Math.sqrt(this.state.moveNum)+2);
-        console.log('keepSmallSize:',keepSmallSize);
+        var boardWidth = Math.max(3,(Math.sqrt(this.state.moveNum)+2)*0.9);
+        var boardHeight = Math.max(3,(Math.sqrt(this.state.moveNum)+2)*1);
+        // console.log('boardWidth:',boardWidth);
+        // console.log('boardHeight:',boardHeight);
+        var tries = 0;
         while ( !foundMove ) {
+            if ( tries > 20 ) {
+                return false;
+            }
+            tries++;
             var piece = pieces[Math.floor(pieces.length*Math.random())];
             if ( Math.random() > 0.5 ) {
                 dirX = Math.round(Math.random())*2-1;
@@ -84,7 +98,7 @@ class GameView extends React.Component {
                 // console.log('startX:',startX);
                 // console.log('endX:',endX);
                 // console.log(' - newWidth:',newWidth);
-                if ( newWidth > keepSmallSize ) {
+                if ( newWidth > boardWidth ) {
                     continue;
                 }
                 var newY = piece.y+dirY*2;
@@ -95,7 +109,7 @@ class GameView extends React.Component {
                 // console.log('startY:',startY);
                 // console.log('endY:',endY);
                 // console.log(' - newHeight:',newHeight);
-                if ( newHeight > keepSmallSize ) {
+                if ( newHeight > boardHeight ) {
                     continue;
                 }
             }
@@ -119,7 +133,8 @@ class GameView extends React.Component {
         piece.moveTo(piece.x+dirX*2,piece.y+dirY*2);
         // piece.moveTo(piece.x,piece.y+1);
 
-        console.log('----------------------');
+        // console.log('----------------------');
+        return true;
     }
 
     onScroll(e) {

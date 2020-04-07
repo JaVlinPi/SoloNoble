@@ -27,18 +27,18 @@ class TileMap extends React.Component {
         var tiles = [];
         var tile, canSelect, isEmpty;
         var sel = this.props.selected;
-        console.log('sel:',sel);
+        // console.log('sel:',sel);
         for ( var x = map.startX; x <= map.endX; x++ ) {
             for ( var y = map.startY; y <= map.endY; y++ ) {
                 // find seletable tiles
                 tile = map.get(x,y);
                 if ( tile ) {
-                    console.log('check tile '+x+','+y);
+                    // console.log('check tile '+x+','+y);
                     canSelect = false;
                     if ( sel ) {
                         // console.log('PieceData.getArray2D().get(x,y):',PieceData.getArray2D().get(x,y));
                         isEmpty = PieceData.getArray2D().get(x,y) == null;
-                        console.log('isEmpty:',isEmpty);
+                        // console.log('isEmpty:',isEmpty);
                         if ( isEmpty ) {
                             if ( sel.x == x ) {
                                 if ( sel.y == y+2 ) {
@@ -58,7 +58,7 @@ class TileMap extends React.Component {
                             }
                         }
                     }
-                    console.log('? canSelect tile '+canSelect);
+                    // console.log('? canSelect tile '+canSelect);
                     tiles.push(this.createTile(x,y,tile,canSelect));
                 }
             }
