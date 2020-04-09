@@ -19,6 +19,7 @@ class GameView extends React.Component {
         this.onReset = this.onReset.bind(this);
         this.addTurn = this.addTurn.bind(this);
         this.minusTurn = this.minusTurn.bind(this);
+        this.toggleLastPiece = this.toggleLastPiece.bind(this);
 
         this.curLvlData = {};
         
@@ -33,6 +34,7 @@ class GameView extends React.Component {
             pieceMap: PieceData.getArray2D(),
             moveNum: 2,
             keepSmall: true,
+            showLast: true,
         }
 
         this.createLevel();
@@ -46,7 +48,8 @@ class GameView extends React.Component {
         console.log('boardWidth:',boardWidth);
         console.log('boardHeight:',boardHeight);
         // creact noble
-        this.addPiece(0,0,2);
+        var noble = this.state.showLast ? 2 : 1;
+        this.addPiece(0,0,2,noble);
 
         // generate moves
         // var moveNum = 6;
@@ -66,9 +69,9 @@ class GameView extends React.Component {
         this.curLvlData.boardStartStr = this.state.tileMap.toString();
     }
 
-    addPiece(x,y,value) {
-        PieceData.create(x,y,value);
-        this.state.tileMap.set(x,y,value);
+    addPiece(x,y,boardValue,pieceValue) {
+        PieceData.create(x,y,pieceValue);
+        this.state.tileMap.set(x,y,boardValue);
     }
 
     createMove() {
@@ -185,6 +188,12 @@ class GameView extends React.Component {
         });
     }
 
+    toggleLastPiece() {
+        this.setState({
+            showLast: !this.state.showLast,
+        })
+    }
+
     render() {
         // console.log('this.state:',this.state);
         return <View style={[styles.main]}>
@@ -196,6 +205,14 @@ class GameView extends React.Component {
                     />
                 </ScrollView>
             </ScrollView>
+            <View style={styles.row}>
+                <Text>{'Show last piece: '}</Text>
+                <BasicButton
+                    style={styles.mediumBtn}
+                    text={this.state.showLast ? 'On' : 'Off'}
+                    onPress={this.toggleLastPiece}
+                />
+            </View>
             <View style={styles.row}>
                 <Text>{'Pieces: '+(this.state.moveNum+1)}</Text>
                 <BasicButton
@@ -249,6 +266,9 @@ const styles = StyleSheet.create({
     },
     smallBtn: {
         width: 30,
+    },
+    mediumBtn: {
+        width: 60,
     }
 });
 
