@@ -21,6 +21,7 @@ class GameView extends React.Component {
         this.minusTurn = this.minusTurn.bind(this);
         this.toggleLastPiece = this.toggleLastPiece.bind(this);
         this.toggleLastTile = this.toggleLastTile.bind(this);
+        this.toggleDeadTiles = this.toggleDeadTiles.bind(this);
 
         this.curLvlData = {};
         
@@ -36,7 +37,8 @@ class GameView extends React.Component {
             moveNum: 2,
             keepSmall: true,
             showLastPiece: true,
-            showLastTile: false,
+            showLastTile: true,
+            showDeadTiles: true,
         }
 
         this.createLevel();
@@ -61,6 +63,10 @@ class GameView extends React.Component {
                 this.onReset();
                 return;
             }
+        }
+
+        if ( this.state.showDeadTiles ) {
+            this.fillDeadTiles();
         }
 
         // var piecesStr = PieceData.toString();
@@ -155,6 +161,19 @@ class GameView extends React.Component {
         return true;
     }
 
+    fillDeadTiles() {
+        var map = this.state.tileMap;
+        for ( var x = map.startX; x <= map.endX; x++ ) {
+            for ( var y = map.startY; y <= map.endY; y++ ) {
+                // find seletable tiles
+                tile = map.get(x,y);
+                if ( tile == null ) {
+                    map.set(x,y,1);
+                }
+            }
+        }
+    }
+
     onScroll(e) {
         // console.log('onScroll(e)');
         // console.log('e:',e);
@@ -204,6 +223,12 @@ class GameView extends React.Component {
         })
     }
 
+    toggleDeadTiles() {
+        this.setState({
+            showDeadTiles: !this.state.showDeadTiles,
+        })
+    }
+
     render() {
         // console.log('this.state:',this.state);
         return <View style={[styles.main]}>
@@ -229,6 +254,14 @@ class GameView extends React.Component {
                     style={styles.mediumBtn}
                     text={this.state.showLastTile ? 'On' : 'Off'}
                     onPress={this.toggleLastTile}
+                />
+            </View>
+            <View style={styles.row}>
+                <Text>{'Show dead tiles: '}</Text>
+                <BasicButton
+                    style={styles.mediumBtn}
+                    text={this.state.showDeadTiles ? 'On' : 'Off'}
+                    onPress={this.toggleDeadTiles}
                 />
             </View>
             <View style={styles.row}>
