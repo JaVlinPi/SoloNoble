@@ -64,6 +64,7 @@ class Board extends React.Component {
     render() {
         console.log('################### Board.render()');
         var board = this.props.board;
+        console.log('board:',board);
 
         var style = {
             paddingLeft: board.startX*TILE_SIZE*-1,
@@ -71,7 +72,7 @@ class Board extends React.Component {
             width: (board.endX-board.startX+1)*TILE_SIZE+20,
             height: (board.endY-board.startY+1)*TILE_SIZE+20,
         }
-        // console.log(' ---- style:',style);
+        console.log(' ---- style:',style);
 
         return <View style={[styles.tile,style,this.props.style]}>
             <TileMap

@@ -15,9 +15,12 @@ class GameView extends React.Component {
         console.log(':::::::::::::::::::::::::::::');
         console.log(':::::::::::::::::::::::::::::');
 
+        this.onRestart = this.onRestart.bind(this);
         this.onReset = this.onReset.bind(this);
         this.addTurn = this.addTurn.bind(this);
         this.minusTurn = this.minusTurn.bind(this);
+
+        this.curLvlData = {};
         
         var tileMap = new Array2D();
         // var pieceMap = new Array2D();
@@ -53,6 +56,14 @@ class GameView extends React.Component {
                 return;
             }
         }
+
+        // var piecesStr = PieceData.toString();
+        // console.log('piecesStr:',piecesStr);
+        // var boardStr = this.state.tileMap.toString();
+        // console.log('boardStr:',boardStr);
+
+        this.curLvlData.piecesStartStr = PieceData.toString();
+        this.curLvlData.boardStartStr = this.state.tileMap.toString();
     }
 
     addPiece(x,y,value) {
@@ -152,6 +163,16 @@ class GameView extends React.Component {
         // this.forceUpdate();
     }
 
+    onRestart() {
+        console.log('onRestart');
+        PieceData.clear();
+        PieceData.loadFromString(this.curLvlData.piecesStartStr);
+        this.state.tileMap.clear();
+        this.state.tileMap.loadString(this.curLvlData.boardStartStr);
+        Board.clearSelection();
+        // this.forceUpdate();
+    }
+
     addTurn() {
         this.setState({
             moveNum: this.state.moveNum+1,
@@ -188,7 +209,10 @@ class GameView extends React.Component {
                     onPress={this.addTurn}
                 />
             </View>
-            <Button title="Reset" onPress={this.onReset}/>
+            <View style={styles.row}>
+                <BasicButton text="Regen" style={styles.button} onPress={this.onReset}/>
+                <BasicButton text="Restart" style={styles.button} onPress={this.onRestart}/>
+            </View>
         </View>;
     }
 
@@ -218,6 +242,10 @@ const styles = StyleSheet.create({
     row: {
         flexDirection: 'row',
         alignItems: 'center',
+        // justifyContent: 'space-between',
+    },
+    button: {
+        width: 100,
     },
     smallBtn: {
         width: 30,

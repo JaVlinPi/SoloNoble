@@ -27,6 +27,22 @@ class PieceData {
         pieces = [];
     }
 
+    static toString() {
+        return pieces.join(';');
+    }
+
+    static loadFromString(str) {
+        console.log('loadFromString(str)');
+        console.log('str:',str);
+        var cells = str.split(';');
+        var cell;
+        for ( var i = 0; i < cells.length; i++ ) {
+            cell = cells[i].split(',');
+            // this.set(cell[0],cell[1],cell[2]);
+            PieceData.create(cell[0],cell[1],cell[2]);
+        }
+    }
+
     constructor(x,y,value) {
         // console.log('new PieceData('+x+','+y+','+value+')');
         this.x = x;
@@ -41,6 +57,10 @@ class PieceData {
         pieceMap.set(newX,newY,this);
         this.x = newX;
         this.y = newY;
+    }
+
+    toString() {
+        return this.x+','+this.y+','+this.value;
     }
 
 }
