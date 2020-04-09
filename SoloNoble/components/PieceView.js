@@ -66,8 +66,11 @@ const styles = StyleSheet.create({
         top: -borderSelSize,
         left: -borderSelSize,
     },
+    color1: {
+        backgroundColor: 'turquoise',
+    },
     color2: {
-        backgroundColor: 'red',
+        backgroundColor: 'crimson',
     }
 });
 
