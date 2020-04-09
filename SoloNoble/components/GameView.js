@@ -20,6 +20,7 @@ class GameView extends React.Component {
         this.addTurn = this.addTurn.bind(this);
         this.minusTurn = this.minusTurn.bind(this);
         this.toggleLastPiece = this.toggleLastPiece.bind(this);
+        this.toggleLastTile = this.toggleLastTile.bind(this);
 
         this.curLvlData = {};
         
@@ -34,7 +35,8 @@ class GameView extends React.Component {
             pieceMap: PieceData.getArray2D(),
             moveNum: 2,
             keepSmall: true,
-            showLast: true,
+            showLastPiece: true,
+            showLastTile: false,
         }
 
         this.createLevel();
@@ -48,8 +50,9 @@ class GameView extends React.Component {
         console.log('boardWidth:',boardWidth);
         console.log('boardHeight:',boardHeight);
         // creact noble
-        var noble = this.state.showLast ? 2 : 1;
-        this.addPiece(0,0,2,noble);
+        var noble = this.state.showLastPiece ? 2 : 1;
+        var endSpace = this.state.showLastTile ? 2 : 1;
+        this.addPiece(0,0,endSpace,noble);
 
         // generate moves
         // var moveNum = 6;
@@ -70,6 +73,7 @@ class GameView extends React.Component {
     }
 
     addPiece(x,y,boardValue,pieceValue) {
+        console.log('addPiece('+x+','+y+','+boardValue+','+pieceValue+')');
         PieceData.create(x,y,pieceValue);
         this.state.tileMap.set(x,y,boardValue);
     }
@@ -190,7 +194,13 @@ class GameView extends React.Component {
 
     toggleLastPiece() {
         this.setState({
-            showLast: !this.state.showLast,
+            showLastPiece: !this.state.showLastPiece,
+        })
+    }
+
+    toggleLastTile() {
+        this.setState({
+            showLastTile: !this.state.showLastTile,
         })
     }
 
@@ -209,8 +219,16 @@ class GameView extends React.Component {
                 <Text>{'Show last piece: '}</Text>
                 <BasicButton
                     style={styles.mediumBtn}
-                    text={this.state.showLast ? 'On' : 'Off'}
+                    text={this.state.showLastPiece ? 'On' : 'Off'}
                     onPress={this.toggleLastPiece}
+                />
+            </View>
+            <View style={styles.row}>
+                <Text>{'Show last tile: '}</Text>
+                <BasicButton
+                    style={styles.mediumBtn}
+                    text={this.state.showLastTile ? 'On' : 'Off'}
+                    onPress={this.toggleLastTile}
                 />
             </View>
             <View style={styles.row}>
