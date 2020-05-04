@@ -2,6 +2,7 @@ import React from "react";
 import { View, StyleSheet, TouchableHighlight } from "react-native";
 import { TILE_SIZE } from "../constants";
 import Marble from '../svg/Marble';
+import BoardTile from "../svg/BoardTile";
 
 class PieceView extends React.Component {
 

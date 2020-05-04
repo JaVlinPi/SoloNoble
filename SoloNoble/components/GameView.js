@@ -1,11 +1,10 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableWithoutFeedback, ScrollView, Button } from "react-native";
+import { View, Text, StyleSheet, TextInput, ScrollView, Button } from "react-native";
 import Array2D from "../com/Array2D";
 import TileMap from "./TileMap";
 import Board from "./Board";
 import BasicButton from "./BasicButton";
 import PieceData from "../com/model/PieceData";
-import { KEEP_SMALL_FACTOR } from "../constants";
 
 class GameView extends React.Component {
 
@@ -17,6 +16,7 @@ class GameView extends React.Component {
 
         this.onRestart = this.onRestart.bind(this);
         this.onReset = this.onReset.bind(this);
+        this.onSave = this.onSave.bind(this);
         this.addTurn = this.addTurn.bind(this);
         this.minusTurn = this.minusTurn.bind(this);
         this.toggleLastPiece = this.toggleLastPiece.bind(this);
@@ -65,7 +65,7 @@ class GameView extends React.Component {
             }
         }
 
-        if ( this.state.showDeadTiles ) {
+        if ( !this.state.showDeadTiles ) {
             this.fillDeadTiles();
         }
 
@@ -199,6 +199,26 @@ class GameView extends React.Component {
         // this.forceUpdate();
     }
 
+    onSave() {
+        console.log('onSave');
+        this.props.showPopup(
+            <View>
+                <Text>Enter Level Name:</Text>
+                <TextInput
+                    // style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
+                    onChangeText={text => onChangeText(text)}
+                    value={value}
+                />
+                <BasicButton text="Save" onPress={this.saveLevel} />
+            </View>
+        );
+    }
+
+    saveLevel(name) {
+        
+    }
+
+
     addTurn() {
         this.setState({
             moveNum: this.state.moveNum+1,
@@ -280,6 +300,7 @@ class GameView extends React.Component {
             <View style={styles.row}>
                 <BasicButton text="Regen" style={styles.button} onPress={this.onReset}/>
                 <BasicButton text="Restart" style={styles.button} onPress={this.onRestart}/>
+                <BasicButton text="Save" style={styles.button} onPress={this.onSave}/>
             </View>
         </View>;
     }

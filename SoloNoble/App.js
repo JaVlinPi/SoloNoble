@@ -25,10 +25,31 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 import Array2D from './com/Array2D';
 import GameView from './components/GameView';
+import LevelDataController from './com/controller/LevelDataController';
+import Popup from './components/Popup';
 
 console.log('+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+');
 
 class App extends React.Component {
+    
+  constructor() {
+    super();
+
+    this.state = {
+      popup: null,
+    };
+
+    this.showPopup = this.showPopup.bind(this);
+
+    this.levelDataController = new LevelDataController();
+
+  }
+
+  showPopup(popupChildren) {
+    this.setState({
+      popup: popupChildren,
+    });
+  }
 
   render(){
     return (
@@ -36,7 +57,12 @@ class App extends React.Component {
         <StatusBar barStyle="dark-content" />
         <SafeAreaView>
             <View style={styles.body}>
-                <GameView/>
+                <GameView showPopup={this.showPopup}/>
+                { this.state.popup ?
+                  <Popup>
+                    {this.state.popup}
+                  </Popup>
+                : null }
             </View>
         </SafeAreaView>
       </>

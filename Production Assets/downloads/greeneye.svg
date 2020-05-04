@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:cc="http://web.resource.org/cc/"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:svg="http://www.w3.org/2000/svg"
+    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+    xmlns:ns1="http://sozi.baierouge.fr"
+    id="レイヤー_1"
+    enable-background="new -88.364 -88.379 320 320.032"
+    xml:space="preserve"
+    viewBox="-88.364 -88.379 320 320.032"
+    version="1.1"
+    y="0px"
+    x="0px"
+  >
+<radialGradient
+      id="SVGID_1_"
+      gradientUnits="userSpaceOnUse"
+      cy="71.636"
+      cx="71.636"
+      gradientTransform="matrix(3.0238 0 0 3.0238 -144.98 -144.98)"
+      r="49.606"
+    >
+	<stop
+        style="stop-color:#333333"
+        offset="0"
+    />
+	<stop
+        style="stop-color:#353535"
+        offset=".3702"
+    />
+	<stop
+        style="stop-color:#3C3C3C"
+        offset=".5036"
+    />
+	<stop
+        style="stop-color:#474747"
+        offset=".5987"
+    />
+	<stop
+        style="stop-color:#585858"
+        offset=".6756"
+    />
+	<stop
+        style="stop-color:#6E6E6E"
+        offset=".7415"
+    />
+	<stop
+        style="stop-color:#8A8A8A"
+        offset=".7998"
+    />
+	<stop
+        style="stop-color:#AAAAAA"
+        offset=".8525"
+    />
+	<stop
+        style="stop-color:#D0D0D0"
+        offset=".901"
+    />
+	<stop
+        style="stop-color:#F9F9F9"
+        offset=".9442"
+    />
+	<stop
+        style="stop-color:#FFFFFF"
+        offset=".95"
+    />
+</radialGradient
+  >
+<circle
+      cy="71.637"
+      cx="71.635"
+      r="150"
+      fill="url(#SVGID_1_)"
+  />
+<radialGradient
+      id="SVGID_2_"
+      gradientUnits="userSpaceOnUse"
+      cy="-46.315"
+      cx="137.1"
+      gradientTransform="matrix(1.6483 0 0 -1.6483 -154.34 -4.7039)"
+      r="78.004"
+    >
+	<stop
+        style="stop-color:#EDE948"
+        offset="0"
+    />
+	<stop
+        style="stop-color:#E7E647"
+        offset=".1066"
+    />
+	<stop
+        style="stop-color:#D5DD45"
+        offset=".2805"
+    />
+	<stop
+        style="stop-color:#B6CE43"
+        offset=".5001"
+    />
+	<stop
+        style="stop-color:#87B843"
+        offset=".7542"
+    />
+	<stop
+        style="stop-color:#67AB44"
+        offset=".9"
+    />
+	<stop
+        style="stop-color:#33633B"
+        offset="1"
+    />
+</radialGradient
+  >
+<circle
+      cy="71.635"
+      cx="71.636"
+      r="128.57"
+      fill="url(#SVGID_2_)"
+  />
+<radialGradient
+      id="SVGID_3_"
+      gradientUnits="userSpaceOnUse"
+      cy="183.31"
+      cx="-9.3491"
+      gradientTransform="matrix(2.5714 0 0 -2.5714 95.674 543)"
+      r="44.658"
+    >
+	<stop
+        style="stop-color:#EDE948"
+        offset="0"
+    />
+	<stop
+        style="stop-color:#ECE848"
+        offset=".4082"
+    />
+	<stop
+        style="stop-color:#E7E647"
+        offset=".5552"
+    />
+	<stop
+        style="stop-color:#DEE246"
+        offset=".66"
+    />
+	<stop
+        style="stop-color:#D2DB45"
+        offset=".7447"
+    />
+	<stop
+        style="stop-color:#C1D344"
+        offset=".8173"
+    />
+	<stop
+        style="stop-color:#ABC843"
+        offset=".8816"
+    />
+	<stop
+        style="stop-color:#8FBB43"
+        offset=".9398"
+    />
+	<stop
+        style="stop-color:#6EAE44"
+        offset=".9915"
+    />
+	<stop
+        style="stop-color:#67AB44"
+        offset="1"
+    />
+</radialGradient
+  >
+<polygon
+      points="71.636 64.469 91.728 -42.321 74.087 64.9 129.49 -28.577 76.243 66.143 160.28 -2.748 77.84 68.051 180.37 32.055 78.694 70.39 187.35 71.636 78.694 72.877 180.37 111.21 77.84 75.215 160.28 146.01 76.243 77.123 129.49 171.84 74.087 78.366 91.728 185.59 71.636 78.797 51.543 185.59 69.187 78.366 13.778 171.84 67.03 77.123 -17.008 146.01 65.428 75.215 -37.101 111.21 64.577 72.877 -44.079 71.636 64.577 70.39 -37.101 32.055 65.428 68.051 -17.008 -2.748 67.03 66.143 13.778 -28.577 69.187 64.9 51.543 -42.321"
+      fill="url(#SVGID_3_)"
+  />
+<radialGradient
+      id="SVGID_4_"
+      gradientUnits="userSpaceOnUse"
+      cy="169.05"
+      cx="-46.214"
+      gradientTransform="matrix(2.5618 -.2241 -.2241 -2.5618 227.9 494.33)"
+      r="49.619"
+    >
+	<stop
+        style="stop-color:#EDE948"
+        offset="0"
+    />
+	<stop
+        style="stop-color:#ECE848"
+        offset=".4082"
+    />
+	<stop
+        style="stop-color:#E7E647"
+        offset=".5552"
+    />
+	<stop
+        style="stop-color:#DEE246"
+        offset=".66"
+    />
+	<stop
+        style="stop-color:#D2DB45"
+        offset=".7447"
+    />
+	<stop
+        style="stop-color:#C1D344"
+        offset=".8173"
+    />
+	<stop
+        style="stop-color:#ABC843"
+        offset=".8816"
+    />
+	<stop
+        style="stop-color:#8FBB43"
+        offset=".9398"
+    />
+	<stop
+        style="stop-color:#6EAE44"
+        offset=".9915"
+    />
+	<stop
+        style="stop-color:#67AB44"
+        offset="1"
+    />
+</radialGradient
+  >
+<polygon
+      points="70.944 63.704 82.839 -56.448 73.698 63.941 125.97 -44.89 76.205 65.113 162.55 -19.282 78.156 67.065 188.16 17.296 79.326 69.575 199.72 60.429 79.568 72.327 195.82 104.91 78.85 75 176.95 145.38 77.27 77.264 145.38 176.95 75.002 78.85 104.91 195.82 72.332 79.567 60.43 199.72 69.577 79.325 17.301 188.16 67.066 78.153 -19.279 162.55 65.113 76.201 -44.892 125.97 63.942 73.694 -56.447 82.84 63.705 70.942 -52.555 38.356 64.421 68.27 -33.683 -2.114 66.005 66.005 -2.109 -33.683 68.27 64.419 38.358 -52.555"
+      fill="url(#SVGID_4_)"
+  />
+<polygon
+      points="70.601 65.754 71.639 -24.795 72.672 65.754 104.62 -18.981 74.625 66.466 133.62 -2.235 76.208 67.794 155.14 23.421 77.247 69.59 166.6 54.893 77.607 71.633 166.6 88.376 77.247 73.677 155.14 119.85 76.213 75.471 133.62 145.5 74.619 76.806 104.62 162.25 72.672 77.515 71.639 168.06 70.598 77.515 38.655 162.25 68.648 76.806 9.654 145.5 67.063 75.471 -11.875 119.85 66.023 73.677 -23.33 88.379 65.667 71.636 -23.33 54.89 66.027 69.59 -11.87 23.418 67.063 67.797 9.654 -2.235 68.648 66.466 38.655 -18.981"
+      fill="#FFFFFF"
+  />
+<radialGradient
+      id="SVGID_5_"
+      gradientUnits="userSpaceOnUse"
+      cy="246.07"
+      cx="-51.809"
+      gradientTransform="matrix(3.0238 0 0 -3.0238 228.29 815.71)"
+      r="14.174"
+    >
+	<stop
+        style="stop-color:#18321F"
+        offset="0"
+    />
+	<stop
+        style="stop-color:#183320"
+        offset=".2979"
+    />
+	<stop
+        style="stop-color:#1A3722"
+        offset=".477"
+    />
+	<stop
+        style="stop-color:#1C3D27"
+        offset=".6247"
+    />
+	<stop
+        style="stop-color:#1D462D"
+        offset=".7553"
+    />
+	<stop
+        style="stop-color:#1E5234"
+        offset=".8747"
+    />
+	<stop
+        style="stop-color:#1E603C"
+        offset=".9843"
+    />
+	<stop
+        style="stop-color:#1E633D"
+        offset="1"
+    />
+</radialGradient
+  >
+<circle
+      cy="71.635"
+      cx="71.636"
+      r="42.857"
+      fill="url(#SVGID_5_)"
+  />
+<ellipse
+      opacity=".2"
+      rx="85.715"
+      ry="64.287"
+      cy="15.918"
+      cx="71.636"
+      enable-background="new    "
+      fill="#FFFFFF"
+  />
+<metadata
+    ><rdf:RDF
+      ><cc:Work
+        ><dc:format
+          >image/svg+xml</dc:format
+        ><dc:type
+            rdf:resource="http://purl.org/dc/dcmitype/StillImage"
+        /><cc:license
+            rdf:resource="http://creativecommons.org/licenses/publicdomain/"
+        /><dc:publisher
+          ><cc:Agent
+              rdf:about="http://openclipart.org/"
+            ><dc:title
+              >Openclipart</dc:title
+            ></cc:Agent
+          ></dc:publisher
+        ><dc:title
+          >Green Eye</dc:title
+        ><dc:date
+          >2011-01-31T07:06:33</dc:date
+        ><dc:description
+          >An aqua styled green eye</dc:description
+        ><dc:source
+          >https://openclipart.org/detail/116539/green-eye-by-stymshinji</dc:source
+        ><dc:creator
+          ><cc:Agent
+            ><dc:title
+              >StymShinji</dc:title
+            ></cc:Agent
+          ></dc:creator
+        ><dc:subject
+          ><rdf:Bag
+            ><rdf:li
+              >body parts</rdf:li
+            ><rdf:li
+              >eye</rdf:li
+            ><rdf:li
+              >green</rdf:li
+            ><rdf:li
+              >iris</rdf:li
+            ><rdf:li
+              >pupil</rdf:li
+            ></rdf:Bag
+          ></dc:subject
+        ></cc:Work
+      ><cc:License
+          rdf:about="http://creativecommons.org/licenses/publicdomain/"
+        ><cc:permits
+            rdf:resource="http://creativecommons.org/ns#Reproduction"
+        /><cc:permits
+            rdf:resource="http://creativecommons.org/ns#Distribution"
+        /><cc:permits
+            rdf:resource="http://creativecommons.org/ns#DerivativeWorks"
+        /></cc:License
+      ></rdf:RDF
+    ></metadata
+  ></svg
+>
