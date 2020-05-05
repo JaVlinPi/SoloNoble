@@ -46,7 +46,7 @@ class PieceView extends React.Component {
     }
 
     onSelect() {
-        this.props.onSelect(this.props.piece);
+        if ( this.props.onSelect ) this.props.onSelect(this.props.piece);
     }
 
     render() {

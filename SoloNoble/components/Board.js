@@ -103,7 +103,7 @@ class Board extends React.Component {
             />
             <PiecesView
                 map={this.props.pieces}
-                onSelect={this.onSelect}
+                onSelect={this.state.movePos ? null : this.onSelect}
                 selected={this.state.selected}
                 movePos={this.state.movePos}
             />
