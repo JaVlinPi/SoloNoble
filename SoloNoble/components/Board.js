@@ -27,7 +27,6 @@ class Board extends React.Component {
         this.clearSelection = this.clearSelection.bind(this);
         this.onSelect = this.onSelect.bind(this);
         this.onTileSelect = this.onTileSelect.bind(this);
-        this.updateTurn = this.updateTurn.bind(this);
     }
 
     clearSelection() {
@@ -43,8 +42,8 @@ class Board extends React.Component {
     }
 
     onTileSelect(tile) {
-        console.log('onTileSelect(tile)');
-        console.log('this.state.selected:',this.state.selected);
+        // console.log('onTileSelect(tile)');
+        // console.log('this.state.selected:',this.state.selected);
         /*
         var sel = this.state.selected;
         console.log('tile:',tile);
@@ -63,26 +62,30 @@ class Board extends React.Component {
             throw('invalid move, no piece to jump');
         }
         */
+        var sel = this.state.selected;
+        var x = ( sel.x - tile.x ) / 2 + tile.x;
+        var y = ( sel.y - tile.y ) / 2 + tile.y;
+        PieceData.getArray2D().delete(x,y);
+        this.forceUpdate();
         this.setState({
             movePos: {
                 x: tile.x,
                 y: tile.y,
             }
         });
-    }
-
-    updateTurn(percent) {
-        console.log('updateTurn('+percent+')');
-        this.setState({
-            turnPercent: percent,
-        });
+        setTimeout(()=>{
+            sel.moveTo(tile.x,tile.y);
+            this.setState({
+                movePos: null,
+            });
+        },PIECE_MOVE_DURATION);
     }
 
     render() {
-        console.log('################### Board.render()');
+        // console.log('################### Board.render()');
         var board = this.props.board;
         // console.log('board:',board);
-        console.log('this.props.pieces:',this.props.pieces);
+        // console.log('this.props.pieces:',this.props.pieces);
 
         var style = {
             paddingLeft: board.startX*TILE_SIZE*-1,

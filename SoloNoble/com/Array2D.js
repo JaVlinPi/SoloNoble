@@ -39,7 +39,7 @@ class Array2D {
   }
 
   delete(x,y) {
-    console.log('delete('+x+','+y+')');
+    // console.log('delete('+x+','+y+')');
     if ( this._values[x] && this._values[x][y] ) {
       // console.log("values["+'c'+x+','+y+"]:"+values['c'+x+','+y]);
       delete this._values[x][y];

@@ -29,16 +29,9 @@ class PieceView extends React.Component {
             this.posAnim.setValue({x:this.props.x*TILE_SIZE,y:this.props.y*TILE_SIZE});
         }
         if ( prevProps.movePos == undefined && this.props.movePos ) {
-            console.log(' - PieceView.componentDidUpdate(prevProps,prevState)');
-            console.log('prevProps:',prevProps);
-            console.log('this.props:',this.props);
-            // Animated.timing(
-            //     this.fadeAnim,
-            //     {
-            //         toValue: 0.5,
-            //         duration: PIECE_MOVE_DURATION,
-            //     }
-            // ).start();
+            // console.log(' - PieceView.componentDidUpdate(prevProps,prevState)');
+            // console.log('prevProps:',prevProps);
+            // console.log('this.props:',this.props);
             Animated.timing(
                 this.posAnim,
                 {
@@ -80,7 +73,6 @@ class PieceView extends React.Component {
                         ...this.props.style,
                         ...styles.tile,
                         ...posStyle,
-                        // opacity: this.fadeAnim,
                     }}
                 >
                     <TouchableHighlight style={[]} onPress={this.onSelect}>
