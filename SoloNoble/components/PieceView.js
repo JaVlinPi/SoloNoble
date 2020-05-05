@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { View, StyleSheet, TouchableHighlight, Animated } from "react-native";
+import { View, StyleSheet, TouchableHighlight, Animated, TouchableWithoutFeedback } from "react-native";
 import { TILE_SIZE, PIECE_MOVE_DURATION } from "../constants";
 import Marble from '../svg/Marble';
 import BoardTile from "../svg/BoardTile";
@@ -18,8 +18,8 @@ class PieceView extends React.Component {
 
         this.fadeAnim = new Animated.Value(1);
         this.posAnim = new Animated.ValueXY({x:props.x*TILE_SIZE,y:props.y*TILE_SIZE});
-        console.log('fadeAnim:',this.fadeAnim);
-        console.log('posAnim:',this.posAnim);
+        // console.log('fadeAnim:',this.fadeAnim);
+        // console.log('posAnim:',this.posAnim);
         // var fadeAnim = useRef(new Animated.Value(0)).current;  // Initial value for opacity: 0
             
     }
@@ -75,14 +75,14 @@ class PieceView extends React.Component {
                         ...posStyle,
                     }}
                 >
-                    <TouchableHighlight style={[]} onPress={this.onSelect}>
+                    <TouchableWithoutFeedback style={[]} onPress={this.onSelect}>
                         <View>
                             { this.props.isSelected ?
                                 <View style={styles.sel}/>
                             : null }
                             <Marble/>
                         </View>
-                    </TouchableHighlight>
+                    </TouchableWithoutFeedback>
                 </Animated.View>
                 
         return <TouchableHighlight style={style} onPress={this.onSelect}>

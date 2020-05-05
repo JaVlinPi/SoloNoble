@@ -66,7 +66,7 @@ class Board extends React.Component {
         var x = ( sel.x - tile.x ) / 2 + tile.x;
         var y = ( sel.y - tile.y ) / 2 + tile.y;
         PieceData.getArray2D().delete(x,y);
-        this.forceUpdate();
+        // this.forceUpdate();
         this.setState({
             movePos: {
                 x: tile.x,
@@ -78,7 +78,7 @@ class Board extends React.Component {
             this.setState({
                 movePos: null,
             });
-        },PIECE_MOVE_DURATION);
+        },PIECE_MOVE_DURATION+200); // extra time prevents glitching
     }
 
     render() {
@@ -99,7 +99,7 @@ class Board extends React.Component {
             <TileMap
                 map={this.props.board}
                 onSelect={this.onTileSelect}
-                selected={this.state.selected}
+                selected={this.state.movePos ? null : this.state.selected}
             />
             <PiecesView
                 map={this.props.pieces}

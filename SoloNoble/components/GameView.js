@@ -34,11 +34,11 @@ class GameView extends React.Component {
             tileMap: tileMap,
             // pieceMap: pieceMap,
             pieceMap: PieceData.getArray2D(),
-            moveNum: 2,
+            moveNum: 10,
             keepSmall: true,
             showLastPiece: true,
             showLastTile: true,
-            showDeadTiles: true,
+            showDeadTiles: false,
         }
 
         this.createLevel();
