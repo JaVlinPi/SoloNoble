@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
         width: TILE_SIZE*0.8,
         height: TILE_SIZE*0.8,
         margin: TILE_SIZE*0.1,
-        opacity: 0.4,
+        // opacity: 0.4,
     },
     color2: {
         backgroundColor: 'yellow',

@@ -1,8 +1,8 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import TileMap from "./TileMap";
-import { TILE_SIZE } from "../constants";
-import Pieces from "./Pieces";
+import { TILE_SIZE, PIECE_MOVE_DURATION } from "../constants";
+import PiecesView from "./PiecesView";
 import PieceData from "../com/model/PieceData";
 
 var _instance;
@@ -20,11 +20,14 @@ class Board extends React.Component {
 
         this.state = {
             selected: null,
+            turnTimer: null,
+            movePos: null,
         }
 
         this.clearSelection = this.clearSelection.bind(this);
         this.onSelect = this.onSelect.bind(this);
         this.onTileSelect = this.onTileSelect.bind(this);
+        this.updateTurn = this.updateTurn.bind(this);
     }
 
     clearSelection() {
@@ -42,6 +45,7 @@ class Board extends React.Component {
     onTileSelect(tile) {
         console.log('onTileSelect(tile)');
         console.log('this.state.selected:',this.state.selected);
+        /*
         var sel = this.state.selected;
         console.log('tile:',tile);
         // remove piece
@@ -58,13 +62,27 @@ class Board extends React.Component {
         else {
             throw('invalid move, no piece to jump');
         }
+        */
+        this.setState({
+            movePos: {
+                x: tile.x,
+                y: tile.y,
+            }
+        });
+    }
 
+    updateTurn(percent) {
+        console.log('updateTurn('+percent+')');
+        this.setState({
+            turnPercent: percent,
+        });
     }
 
     render() {
         console.log('################### Board.render()');
         var board = this.props.board;
-        console.log('board:',board);
+        // console.log('board:',board);
+        console.log('this.props.pieces:',this.props.pieces);
 
         var style = {
             paddingLeft: board.startX*TILE_SIZE*-1,
@@ -72,7 +90,7 @@ class Board extends React.Component {
             width: (board.endX-board.startX+1)*TILE_SIZE+20,
             height: (board.endY-board.startY+1)*TILE_SIZE+20,
         }
-        console.log(' ---- style:',style);
+        // console.log(' ---- style:',style);
 
         return <View style={[styles.tile,style,this.props.style]}>
             <TileMap
@@ -80,10 +98,11 @@ class Board extends React.Component {
                 onSelect={this.onTileSelect}
                 selected={this.state.selected}
             />
-            <Pieces
+            <PiecesView
                 map={this.props.pieces}
                 onSelect={this.onSelect}
                 selected={this.state.selected}
+                movePos={this.state.movePos}
             />
         </View>;
     }

@@ -2,9 +2,9 @@ import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import Tile from './Tile';
 import { TILE_SIZE } from "../constants";
-import Piece from "./PieceView";
+import PieceView from "./PieceView";
 
-class Pieces extends React.Component {
+class PiecesView extends React.Component {
 
     constructor() {
         super();
@@ -41,7 +41,16 @@ class Pieces extends React.Component {
         // console.log('this.props.selected:',this.props.selected);
         var isSeleted = this.props.selected == piece;
         // console.log('isSeleted:',isSeleted);
-        return <Piece x={x} y={y} piece={piece} onSelect={this.props.onSelect} isSelected={isSeleted}/>;
+        if ( isSeleted && this.props.movePos ) {
+            return <PieceView
+                        x={x} y={y}
+                        piece={piece}
+                        onSelect={this.props.onSelect}
+                        isSelected={isSeleted}
+                        movePos={this.props.movePos}
+                    />;
+        }
+        return <PieceView x={x} y={y} piece={piece} onSelect={this.props.onSelect} isSelected={isSeleted}/>;
     }
 
     render() {
@@ -69,4 +78,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default Pieces;
+export default PiecesView;
