@@ -3,6 +3,8 @@ import { View, StyleSheet, TouchableHighlight, Animated, TouchableWithoutFeedbac
 import { TILE_SIZE, PIECE_MOVE_DURATION } from "../constants";
 import Marble from '../svg/Marble';
 import BoardTile from "../svg/BoardTile";
+import PearlGold from "../svg/Pieces/PearlGold";
+import PearlBlue from "../svg/Pieces/PearlBlue";
 // import Animation from '../com/controller/Animation';
 
 class PieceView extends React.Component {
@@ -67,6 +69,10 @@ class PieceView extends React.Component {
         // if ( styles['color'+this.props.piece.value] ) {
         //     style.push(styles['color'+this.props.piece.value]);
         // }
+        var symbol = <PearlBlue/>;
+        if ( this.props.piece.value == 2 ) {
+            symbol = <PearlGold/>;
+        }
         
         return <Animated.View
                     style={{
@@ -80,7 +86,7 @@ class PieceView extends React.Component {
                             { this.props.isSelected ?
                                 <View style={styles.sel}/>
                             : null }
-                            <Marble/>
+                            {symbol}
                         </View>
                     </TouchableWithoutFeedback>
                 </Animated.View>
