@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { View, StyleSheet, TouchableHighlight, Animated, TouchableWithoutFeedback } from "react-native";
+import { View, StyleSheet, TouchableHighlight, Animated, TouchableWithoutFeedback, Easing } from "react-native";
 import { TILE_SIZE, PIECE_MOVE_DURATION } from "../constants";
 import Marble from '../svg/Marble';
 import BoardTile from "../svg/BoardTile";
@@ -20,6 +20,11 @@ class PieceView extends React.Component {
 
         this.fadeAnim = new Animated.Value(1);
         this.posAnim = new Animated.ValueXY({x:props.x*TILE_SIZE,y:props.y*TILE_SIZE});
+        this.zAnim = new Animated.Value(0);
+        this.bounce = this.zAnim.interpolate({
+            inputRange: [0, 0.5, 1],
+            outputRange: [1, 1.5, 1]
+        });
         // console.log('fadeAnim:',this.fadeAnim);
         // console.log('posAnim:',this.posAnim);
         // var fadeAnim = useRef(new Animated.Value(0)).current;  // Initial value for opacity: 0
@@ -42,6 +47,18 @@ class PieceView extends React.Component {
                         y:this.props.movePos.y*TILE_SIZE
                     },
                     duration: PIECE_MOVE_DURATION,
+                    // easing: Easing.inOut(Easing.exp), // good
+                    easing: Easing.inOut(Easing.cubic), // better
+                }
+            ).start();
+            this.zAnim.setValue(0);
+            Animated.timing(
+                this.zAnim,
+                {
+                    toValue: 1,
+                    duration: PIECE_MOVE_DURATION,
+                    // easing: Easing.inOut(Easing.cubic),
+                    easing: Easing.inOut((t)=>{return Math.sqrt(t)}),
                 }
             ).start();
         }
@@ -60,6 +77,8 @@ class PieceView extends React.Component {
         var posStyle = {
             left: this.posAnim.x,
             top: this.posAnim.y,
+            // opacity: this.bounce,
+            transform: [{ scale: this.bounce }],
         };
         // var style = [styles.tile,posStyle];
         // console.log('this.props.piece:',this.props.piece);
