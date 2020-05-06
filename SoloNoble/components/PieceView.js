@@ -48,7 +48,8 @@ class PieceView extends React.Component {
                     },
                     duration: PIECE_MOVE_DURATION,
                     // easing: Easing.inOut(Easing.exp), // good
-                    easing: Easing.inOut(Easing.cubic), // better
+                    // easing: Easing.inOut(Easing.cubic), // better
+                    easing: Easing.inOut((t)=>{return t*t}),
                 }
             ).start();
             this.zAnim.setValue(0);
@@ -58,7 +59,8 @@ class PieceView extends React.Component {
                     toValue: 1,
                     duration: PIECE_MOVE_DURATION,
                     // easing: Easing.inOut(Easing.cubic),
-                    easing: Easing.inOut((t)=>{return Math.sqrt(t)}),
+                    // easing: Easing.inOut((t)=>{return Math.sqrt(t)}),
+                    easing: Easing.inOut((t)=>{return (Math.sqrt(t)+t)/2}),
                 }
             ).start();
         }
