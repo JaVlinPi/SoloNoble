@@ -1,9 +1,10 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import TileMap from "./TileMap";
-import { TILE_SIZE, PIECE_MOVE_DURATION } from "../constants";
+import { TILE_SIZE, PIECE_MOVE_DURATION, STAR_BURST_DURATION } from "../constants";
 import PiecesView from "./PiecesView";
 import PieceData from "../com/model/PieceData";
+import Explosion from "./Explosion";
 
 var _instance;
 
@@ -24,9 +25,14 @@ class Board extends React.Component {
             movePos: null,
         }
 
+        this.explosions = [];
+
         this.clearSelection = this.clearSelection.bind(this);
         this.onSelect = this.onSelect.bind(this);
         this.onTileSelect = this.onTileSelect.bind(this);
+        this.createExplosion = this.createExplosion.bind(this);
+        
+        this.createExplosion(0,0);
     }
 
     clearSelection() {
@@ -75,21 +81,30 @@ class Board extends React.Component {
         setTimeout(()=>{
             PieceData.getArray2D().delete(x,y);
             sel.moveTo(tile.x,tile.y);
+            this.createExplosion(tile.x,tile.y);
             this.setState({
                 movePos: null,
             });
         },PIECE_MOVE_DURATION+200); // extra time prevents glitching
     }
 
-    createExplosion() {
-
+    createExplosion(x,y) {
+        var explosion = <Explosion x={x} y={y}/>;
+        this.explosions.push(explosion);
+        setTimeout(()=>{
+            var i = this.explosions.indexOf(explosion);
+            if ( i != -1 ) {
+                this.explosions.splice(i,1);
+            }
+        },STAR_BURST_DURATION+200);
     }
 
     render() {
-        // console.log('################### Board.render()');
+        console.log('################### Board.render()');
         var board = this.props.board;
         // console.log('board:',board);
         // console.log('this.props.pieces:',this.props.pieces);
+        console.log('this.explosions:',this.explosions);
 
         var style = {
             paddingLeft: board.startX*TILE_SIZE*-1,
@@ -111,6 +126,7 @@ class Board extends React.Component {
                 selected={this.state.selected}
                 movePos={this.state.movePos}
             />
+            {this.explosions}
         </View>;
     }
 
