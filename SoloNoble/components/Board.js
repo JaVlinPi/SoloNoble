@@ -65,7 +65,6 @@ class Board extends React.Component {
         var sel = this.state.selected;
         var x = ( sel.x - tile.x ) / 2 + tile.x;
         var y = ( sel.y - tile.y ) / 2 + tile.y;
-        PieceData.getArray2D().delete(x,y);
         // this.forceUpdate();
         this.setState({
             movePos: {
@@ -74,11 +73,16 @@ class Board extends React.Component {
             }
         });
         setTimeout(()=>{
+            PieceData.getArray2D().delete(x,y);
             sel.moveTo(tile.x,tile.y);
             this.setState({
                 movePos: null,
             });
         },PIECE_MOVE_DURATION+200); // extra time prevents glitching
+    }
+
+    createExplosion() {
+
     }
 
     render() {

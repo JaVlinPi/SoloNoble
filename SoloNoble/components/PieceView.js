@@ -81,6 +81,7 @@ class PieceView extends React.Component {
             top: this.posAnim.y,
             // opacity: this.bounce,
             transform: [{ scale: this.bounce }],
+            zIndex: this.props.isSelected ? 100 : 1,
         };
         // var style = [styles.tile,posStyle];
         // console.log('this.props.piece:',this.props.piece);
