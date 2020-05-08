@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import Tile from './Tile';
-import { TILE_SIZE } from "../constants";
+import { TILE_SIZE, BOARD_PADDING } from "../constants";
 import PieceView from "./PieceView";
 
 class PiecesView extends React.Component {
@@ -56,10 +56,10 @@ class PiecesView extends React.Component {
     render() {
         var map = this.props.map;
         var style = {
-            marginLeft: map.startX*TILE_SIZE*-1,
-            marginTop: map.startY*TILE_SIZE*-1,
-            width: (map.endX-map.startX+1)*TILE_SIZE+4,
-            height: (map.endY-map.startY+1)*TILE_SIZE+4,
+            marginLeft: map.startX*TILE_SIZE*-1+BOARD_PADDING,
+            marginTop: map.startY*TILE_SIZE*-1+BOARD_PADDING,
+            width: (map.endX-map.startX+1)*TILE_SIZE+4+(BOARD_PADDING*2),
+            height: (map.endY-map.startY+1)*TILE_SIZE+4+(BOARD_PADDING*2),
         }
         return <View style={[styles.tile,this.state.style,style,this.props.style]}>
             {this.getPieces()}

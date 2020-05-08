@@ -7,8 +7,8 @@ import PosAnim from "./PosAnim";
 // import Animation from '../com/controller/Animation';
 
 const NUM_STARS = 6;
-const STAR_SIZE = TILE_SIZE*0.5;
-const STAR_MOVE = 100;
+const STAR_SIZE = TILE_SIZE*0.4;
+const STAR_MOVE = TILE_SIZE*0.65;
 
 class Explosion extends React.Component {
 
@@ -29,7 +29,7 @@ class Explosion extends React.Component {
             // stars.push(
             //         <Star style={styles.star}/>
             // );
-            var offset = Math.random()*0.6+0.7;
+            var offset = Math.random()*0.4+0.8;
             // var size = STAR_SIZE+(Math.random()*20-10);
             var size = STAR_SIZE*offset;
             stars.push(

@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import TileMap from "./TileMap";
-import { TILE_SIZE, PIECE_MOVE_DURATION, STAR_BURST_DURATION } from "../constants";
+import { TILE_SIZE, PIECE_MOVE_DURATION, STAR_BURST_DURATION, BOARD_PADDING } from "../constants";
 import PiecesView from "./PiecesView";
 import PieceData from "../com/model/PieceData";
 import Explosion from "./Explosion";
@@ -31,7 +31,7 @@ class Board extends React.Component {
         this.onSelect = this.onSelect.bind(this);
         this.onTileSelect = this.onTileSelect.bind(this);
         this.createExplosion = this.createExplosion.bind(this);
-        
+
         this.createExplosion(0,0);
     }
 
@@ -107,10 +107,10 @@ class Board extends React.Component {
         console.log('this.explosions:',this.explosions);
 
         var style = {
-            paddingLeft: board.startX*TILE_SIZE*-1,
-            paddingTop: board.startY*TILE_SIZE*-1,
-            width: (board.endX-board.startX+1)*TILE_SIZE+20,
-            height: (board.endY-board.startY+1)*TILE_SIZE+20,
+            paddingLeft: board.startX*TILE_SIZE*-1+BOARD_PADDING,
+            paddingTop: board.startY*TILE_SIZE*-1+BOARD_PADDING,
+            width: (board.endX-board.startX+1)*TILE_SIZE+20+(BOARD_PADDING*2),
+            height: (board.endY-board.startY+1)*TILE_SIZE+20+(BOARD_PADDING*2),
         }
         // console.log(' ---- style:',style);
 
@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
         overflow: 'visible',
         position: 'relative',
         backgroundColor: 'grey',
-        margin: 20,
+        // margin: 20,
     }
 });
 
