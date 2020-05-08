@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
 import TileMap from "./TileMap";
 import { TILE_SIZE, PIECE_MOVE_DURATION, STAR_BURST_DURATION, BOARD_PADDING } from "../constants";
 import PiecesView from "./PiecesView";
@@ -32,8 +32,7 @@ class Board extends React.Component {
         this.onSelect = this.onSelect.bind(this);
         this.onTileSelect = this.onTileSelect.bind(this);
         this.createExplosion = this.createExplosion.bind(this);
-
-        // this.createExplosion(0,0);
+        
     }
 
     clearSelection() {
@@ -49,30 +48,9 @@ class Board extends React.Component {
     }
 
     onTileSelect(tile) {
-        // console.log('onTileSelect(tile)');
-        // console.log('this.state.selected:',this.state.selected);
-        /*
-        var sel = this.state.selected;
-        console.log('tile:',tile);
-        // remove piece
-        var x = ( sel.x - tile.x ) / 2 + tile.x;
-        var y = ( sel.y - tile.y ) / 2 + tile.y;
-        console.log('remove piece '+x+','+y);
-        console.log('PieceData.getArray2D().get('+x+','+y+'):',PieceData.getArray2D().get(x,y));
-        if ( PieceData.getArray2D().get(x,y) ) {
-            PieceData.getArray2D().delete(x,y);
-            sel.moveTo(tile.x,tile.y);
-            // this.clearSelection();
-            this.forceUpdate();
-        }
-        else {
-            throw('invalid move, no piece to jump');
-        }
-        */
         var sel = this.state.selected;
         var x = ( sel.x - tile.x ) / 2 + tile.x;
         var y = ( sel.y - tile.y ) / 2 + tile.y;
-        // this.forceUpdate();
         this.setState({
             movePos: {
                 x: tile.x,
@@ -101,31 +79,11 @@ class Board extends React.Component {
                 this.forceUpdate();
             }
         },STAR_BURST_DURATION+500);
-        // this.setState({
-        //     explosionPos: {
-        //         x: x,
-        //         y: y,
-        //     }
-        // });
-        // var that = this;
-        // setTimeout((()=>{
-        //     if (    that.state.explosionPos &&
-        //             that.state.explosionPos.x == x &&
-        //             that.statethis.state.explosionPos.y == y ) {
-        //         that.setState({
-        //             explosionPos: null,
-        //         });
-        //     }
-        // }).bind(this),STAR_BURST_DURATION+2000);
     }
 
     render() {
-        console.log('################### Board.render()');
+        // console.log('################### Board.render()');
         var board = this.props.board;
-        // console.log('board:',board);
-        // console.log('this.props.pieces:',this.props.pieces);
-        console.log('this.explosions:',this.explosions);
-        console.log('this.explosions.length:',this.explosions.length);
 
         var style = {
             paddingLeft: board.startX*TILE_SIZE*-1+BOARD_PADDING,
@@ -133,7 +91,6 @@ class Board extends React.Component {
             width: (board.endX-board.startX+1)*TILE_SIZE+20+(BOARD_PADDING*2),
             height: (board.endY-board.startY+1)*TILE_SIZE+20+(BOARD_PADDING*2),
         }
-        // console.log(' ---- style:',style);
 
         return <View style={[styles.tile,style,this.props.style]}>
             <TileMap
@@ -148,9 +105,6 @@ class Board extends React.Component {
                 movePos={this.state.movePos}
             />
             { this.explosions.length == 0 ? null : this.explosions }
-            {/* { this.state.explosionPos ?
-                <Explosion x={this.state.explosionPos.x} y={this.state.explosionPos.y}/>
-            : null } */}
         </View>;
     }
 
@@ -158,8 +112,8 @@ class Board extends React.Component {
 
 const styles = StyleSheet.create({
     tile: {
-        borderColor: 'green',
-        borderWidth: 10,
+        // borderColor: 'green',
+        // borderWidth: 10,
         overflow: 'visible',
         position: 'relative',
         backgroundColor: 'grey',

@@ -1,11 +1,8 @@
-import React, { useRef } from "react";
-import { View, StyleSheet, TouchableHighlight, Animated, TouchableWithoutFeedback, Easing } from "react-native";
+import React from "react";
+import { View, StyleSheet, Animated, TouchableWithoutFeedback, Easing } from "react-native";
 import { TILE_SIZE, PIECE_MOVE_DURATION } from "../constants";
-import Marble from '../svg/Marble';
-import BoardTile from "../svg/BoardTile";
 import PearlGold from "../svg/Pieces/PearlGold";
 import PearlBlue from "../svg/Pieces/PearlBlue";
-// import Animation from '../com/controller/Animation';
 
 class PieceView extends React.Component {
 
@@ -18,17 +15,13 @@ class PieceView extends React.Component {
 
         this.onSelect = this.onSelect.bind(this);
 
-        this.fadeAnim = new Animated.Value(1);
         this.posAnim = new Animated.ValueXY({x:props.x*TILE_SIZE,y:props.y*TILE_SIZE});
         this.zAnim = new Animated.Value(0);
         this.bounce = this.zAnim.interpolate({
             inputRange: [0, 0.5, 1],
             outputRange: [1, 1.5, 1]
         });
-        // console.log('fadeAnim:',this.fadeAnim);
-        // console.log('posAnim:',this.posAnim);
-        // var fadeAnim = useRef(new Animated.Value(0)).current;  // Initial value for opacity: 0
-            
+        
     }
 
     componentDidUpdate(prevProps) {
@@ -71,26 +64,13 @@ class PieceView extends React.Component {
     }
 
     render() {
-        // console.log(' - this.props.isSelected:',this.props.isSelected);
-        // var posStyle = {
-        //     left: this.props.x*TILE_SIZE,
-        //     top: this.props.y*TILE_SIZE,
-        // };
         var posStyle = {
             left: this.posAnim.x,
             top: this.posAnim.y,
-            // opacity: this.bounce,
             transform: [{ scale: this.bounce }],
             zIndex: this.props.isSelected ? 100 : 1,
         };
-        // var style = [styles.tile,posStyle];
-        // console.log('this.props.piece:',this.props.piece);
-        // console.log('this.props.piece.value:',this.props.piece.value);
-
-        // need to replace this with way to show different piece types
-        // if ( styles['color'+this.props.piece.value] ) {
-        //     style.push(styles['color'+this.props.piece.value]);
-        // }
+        
         var symbol = <PearlBlue/>;
         if ( this.props.piece.value == 2 ) {
             symbol = <PearlGold/>;
@@ -111,16 +91,7 @@ class PieceView extends React.Component {
                             {symbol}
                         </View>
                     </TouchableWithoutFeedback>
-                </Animated.View>
-                
-        return <TouchableHighlight style={style} onPress={this.onSelect}>
-                    <View>
-                        { this.props.isSelected ?
-                            <View style={styles.sel}/>
-                        : null }
-                        <Marble/>
-                    </View>
-                </TouchableHighlight>;
+                </Animated.View>;
     }
 
 }
