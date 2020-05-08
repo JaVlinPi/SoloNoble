@@ -23,6 +23,7 @@ class Board extends React.Component {
             selected: null,
             turnTimer: null,
             movePos: null,
+            explosionPos: null,
         }
 
         this.explosions = [];
@@ -32,7 +33,7 @@ class Board extends React.Component {
         this.onTileSelect = this.onTileSelect.bind(this);
         this.createExplosion = this.createExplosion.bind(this);
 
-        this.createExplosion(0,0);
+        // this.createExplosion(0,0);
     }
 
     clearSelection() {
@@ -80,8 +81,10 @@ class Board extends React.Component {
         });
         setTimeout(()=>{
             PieceData.getArray2D().delete(x,y);
+            this.createExplosion(x,y);
+        },PIECE_MOVE_DURATION); // extra time prevents glitching
+        setTimeout(()=>{
             sel.moveTo(tile.x,tile.y);
-            this.createExplosion(tile.x,tile.y);
             this.setState({
                 movePos: null,
             });
@@ -95,8 +98,25 @@ class Board extends React.Component {
             var i = this.explosions.indexOf(explosion);
             if ( i != -1 ) {
                 this.explosions.splice(i,1);
+                this.forceUpdate();
             }
-        },STAR_BURST_DURATION+200);
+        },STAR_BURST_DURATION+500);
+        // this.setState({
+        //     explosionPos: {
+        //         x: x,
+        //         y: y,
+        //     }
+        // });
+        // var that = this;
+        // setTimeout((()=>{
+        //     if (    that.state.explosionPos &&
+        //             that.state.explosionPos.x == x &&
+        //             that.statethis.state.explosionPos.y == y ) {
+        //         that.setState({
+        //             explosionPos: null,
+        //         });
+        //     }
+        // }).bind(this),STAR_BURST_DURATION+2000);
     }
 
     render() {
@@ -105,6 +125,7 @@ class Board extends React.Component {
         // console.log('board:',board);
         // console.log('this.props.pieces:',this.props.pieces);
         console.log('this.explosions:',this.explosions);
+        console.log('this.explosions.length:',this.explosions.length);
 
         var style = {
             paddingLeft: board.startX*TILE_SIZE*-1+BOARD_PADDING,
@@ -126,7 +147,10 @@ class Board extends React.Component {
                 selected={this.state.selected}
                 movePos={this.state.movePos}
             />
-            {this.explosions}
+            { this.explosions.length == 0 ? null : this.explosions }
+            {/* { this.state.explosionPos ?
+                <Explosion x={this.state.explosionPos.x} y={this.state.explosionPos.y}/>
+            : null } */}
         </View>;
     }
 

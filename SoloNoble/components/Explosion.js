@@ -18,6 +18,10 @@ class Explosion extends React.Component {
         this.getStars = this.getStars.bind(this);
     }
 
+    componentWillUnmount() {
+        console.log('piweirpowerweori');
+    }
+
     getStars() {
         console.log(' -------- getStars()');
         var stars = [];
