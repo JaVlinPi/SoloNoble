@@ -6,7 +6,9 @@
  * @flow
  */
 
+import 'react-native-gesture-handler';
 import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
 import {
   SafeAreaView,
   StyleSheet,
@@ -24,7 +26,7 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 import Array2D from './com/Array2D';
-import GameView from './components/GameView';
+import GameView from './components/PuzzleGenView';
 import LevelDataController from './com/controller/LevelDataController';
 import Popup from './components/Popup';
 
@@ -52,6 +54,23 @@ class App extends React.Component {
   }
 
   render(){
+    return (
+      <NavigationContainer>
+        <>
+          <StatusBar barStyle="dark-content" />
+          <SafeAreaView>
+              <View style={styles.body}>
+                  <GameView showPopup={this.showPopup}/>
+                  { this.state.popup ?
+                    <Popup>
+                      {this.state.popup}
+                    </Popup>
+                  : null }
+              </View>
+          </SafeAreaView>
+        </>
+      </NavigationContainer>
+    );
     return (
       <>
         <StatusBar barStyle="dark-content" />
