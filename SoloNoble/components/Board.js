@@ -8,6 +8,8 @@ import Explosion from "./Explosion";
 
 var _instance;
 
+const MAX_BOARD_HEIGHT = 120;
+
 class Board extends React.Component {
 
     static clearSelection() {
@@ -85,7 +87,9 @@ class Board extends React.Component {
         // console.log('################### Board.render()');
         var board = this.props.board;
 
-        var tileSize = this.props.levelsView ? TILE_SIZE/2 : TILE_SIZE;
+        var boardYNum = board.endY-board.startY+1;
+
+        var tileSize = this.props.levelsView ? Math.min(TILE_SIZE/2,MAX_BOARD_HEIGHT/boardYNum) : TILE_SIZE;
 
         var style = {
             paddingLeft: board.startX*tileSize*-1+BOARD_PADDING,

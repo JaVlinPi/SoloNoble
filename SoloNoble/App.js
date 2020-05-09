@@ -61,8 +61,8 @@ class App extends React.Component {
     return (
       <NavigationContainer>
         <Stack.Navigator headerMode={'none'}>
-          <Stack.Screen name="Levels" component={LevelsScreen} />
           <Stack.Screen name="PuzzleGen" component={PuzzleGenScreen} />
+          <Stack.Screen name="Levels" component={LevelsScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     );

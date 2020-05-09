@@ -65,9 +65,6 @@ class PieceView extends React.Component {
 
     render() {
         var symbol = <PearlBlue/>;
-        console.log('this.props:',this.props);
-        console.log('this.props.piece:',this.props.piece);
-        console.log('this.props.piece.value:',this.props.piece.value);
         if ( this.props.piece == 2 || this.props.piece.value == 2 ) {
             symbol = <PearlGold/>;
         }
