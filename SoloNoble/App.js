@@ -9,6 +9,7 @@
 import 'react-native-gesture-handler';
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 import {
   SafeAreaView,
   StyleSheet,
@@ -26,11 +27,14 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 import Array2D from './com/Array2D';
-import GameView from './components/PuzzleGenView';
+import PuzzleGenView from './components/PuzzleGenView';
 import LevelDataController from './com/controller/LevelDataController';
 import Popup from './components/Popup';
+import LevelsView from './components/LevelsView';
 
 console.log('+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+');
+
+const Stack = createStackNavigator();
 
 class App extends React.Component {
     
@@ -56,11 +60,33 @@ class App extends React.Component {
   render(){
     return (
       <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name="PuzzleGen" component={PuzzleGenView} />
+          <Stack.Screen name="Levels" component={LevelsView} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    );
+    return (
+      <>
+        <StatusBar barStyle="dark-content" />
+        <SafeAreaView>
+            <View style={styles.body}>
+              <NavigationContainer>
+                <Stack.Navigator>
+                  <Stack.Screen name="PuzzleGen" component={PuzzleGenView} />
+                </Stack.Navigator>
+              </NavigationContainer>
+            </View>
+        </SafeAreaView>
+      </>
+    );
+    return (
+      <NavigationContainer>
         <>
           <StatusBar barStyle="dark-content" />
           <SafeAreaView>
               <View style={styles.body}>
-                  <GameView showPopup={this.showPopup}/>
+                  <PuzzleGenView showPopup={this.showPopup}/>
                   { this.state.popup ?
                     <Popup>
                       {this.state.popup}
@@ -76,7 +102,7 @@ class App extends React.Component {
         <StatusBar barStyle="dark-content" />
         <SafeAreaView>
             <View style={styles.body}>
-                <GameView showPopup={this.showPopup}/>
+                <PuzzleGenView showPopup={this.showPopup}/>
                 { this.state.popup ?
                   <Popup>
                     {this.state.popup}

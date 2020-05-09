@@ -6,7 +6,7 @@ import Board from "./Board";
 import BasicButton from "./BasicButton";
 import PieceData from "../com/model/PieceData";
 
-class GameView extends React.Component {
+class PuzzleGenView extends React.Component {
 
     constructor() {
         super();
@@ -18,6 +18,7 @@ class GameView extends React.Component {
         this.onReset = this.onReset.bind(this);
         this.onSave = this.onSave.bind(this);
         this.onOutput = this.onOutput.bind(this);
+        this.gotoLevels = this.gotoLevels.bind(this);
         this.addTurn = this.addTurn.bind(this);
         this.minusTurn = this.minusTurn.bind(this);
         this.toggleLastPiece = this.toggleLastPiece.bind(this);
@@ -225,6 +226,10 @@ class GameView extends React.Component {
         console.log('PieceData.toString():',PieceData.toString());
     }
 
+    gotoLevels() {
+        this.props.navigation.navigate('Levels');
+    }
+
 
     addTurn() {
         this.setState({
@@ -309,6 +314,7 @@ class GameView extends React.Component {
                 <BasicButton text="Restart" style={styles.button} onPress={this.onRestart}/>
                 {/* <BasicButton text="Save" style={styles.button} onPress={this.onSave}/> */}
                 <BasicButton text="Output" style={styles.button} onPress={this.onOutput}/>
+                <BasicButton text="Levels" style={styles.button} onPress={this.gotoLevels}/>
             </View>
         </View>;
     }
@@ -352,4 +358,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default GameView;
+export default PuzzleGenView;
