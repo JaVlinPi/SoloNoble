@@ -27,10 +27,10 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 import Array2D from './com/Array2D';
-import PuzzleGenView from './components/PuzzleGenView';
+import PuzzleGenScreen from './components/screens/PuzzleGenScreen';
 import LevelDataController from './com/controller/LevelDataController';
 import Popup from './components/Popup';
-import LevelsView from './components/LevelsView';
+import LevelsScreen from './components/screens/LevelsScreen';
 
 console.log('+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+');
 
@@ -60,9 +60,9 @@ class App extends React.Component {
   render(){
     return (
       <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen name="PuzzleGen" component={PuzzleGenView} />
-          <Stack.Screen name="Levels" component={LevelsView} />
+        <Stack.Navigator headerMode={'none'}>
+          <Stack.Screen name="PuzzleGen" component={PuzzleGenScreen} />
+          <Stack.Screen name="Levels" component={LevelsScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     );
@@ -73,7 +73,7 @@ class App extends React.Component {
             <View style={styles.body}>
               <NavigationContainer>
                 <Stack.Navigator>
-                  <Stack.Screen name="PuzzleGen" component={PuzzleGenView} />
+                  <Stack.Screen name="PuzzleGen" component={PuzzleGenScreen} />
                 </Stack.Navigator>
               </NavigationContainer>
             </View>
@@ -86,7 +86,7 @@ class App extends React.Component {
           <StatusBar barStyle="dark-content" />
           <SafeAreaView>
               <View style={styles.body}>
-                  <PuzzleGenView showPopup={this.showPopup}/>
+                  <PuzzleGenScreen showPopup={this.showPopup}/>
                   { this.state.popup ?
                     <Popup>
                       {this.state.popup}
@@ -102,7 +102,7 @@ class App extends React.Component {
         <StatusBar barStyle="dark-content" />
         <SafeAreaView>
             <View style={styles.body}>
-                <PuzzleGenView showPopup={this.showPopup}/>
+                <PuzzleGenScreen showPopup={this.showPopup}/>
                 { this.state.popup ?
                   <Popup>
                     {this.state.popup}

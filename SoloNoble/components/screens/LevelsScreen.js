@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 
-class LevelsView extends React.Component {
+class LevelsScreen extends React.Component {
 
     constructor() {
         super();
@@ -26,4 +26,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default LevelsView;
+export default LevelsScreen;

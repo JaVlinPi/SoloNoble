@@ -1,12 +1,12 @@
 import React from "react";
 import { View, Text, StyleSheet, TextInput, ScrollView, Button } from "react-native";
-import Array2D from "../com/Array2D";
-import TileMap from "./TileMap";
-import Board from "./Board";
-import BasicButton from "./BasicButton";
-import PieceData from "../com/model/PieceData";
+import Array2D from "../../com/Array2D";
+import TileMap from "../TileMap";
+import Board from "../Board";
+import BasicButton from "../BasicButton";
+import PieceData from "../../com/model/PieceData";
 
-class PuzzleGenView extends React.Component {
+class PuzzleGenScreen extends React.Component {
 
     constructor() {
         super();
@@ -358,4 +358,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default PuzzleGenView;
+export default PuzzleGenScreen;
