@@ -68,10 +68,23 @@ class TileMap extends React.Component {
 
     createTile(x,y,value,canSelect) {
         // console.log('createTile('+x+','+y+','+value+')');
-        if ( canSelect ) {
-            return <Tile x={x} y={y} value={value} canSelect onSelect={this.props.onSelect}/>;
+        if ( !this.props.levelsView && canSelect ) {
+            return <Tile
+                        x={x}
+                        y={y}
+                        value={value}
+                        canSelect
+                        onSelect={this.props.onSelect}
+                        size={this.props.size}
+                    />;
         }
-        return <Tile x={x} y={y} value={value}/>;
+        return <Tile
+                    x={x}
+                    y={y}
+                    value={value}
+                    levelsView={this.props.levelsView}
+                    size={this.props.size}
+                />;
     }
 
     render() {

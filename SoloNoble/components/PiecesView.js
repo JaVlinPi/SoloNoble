@@ -1,6 +1,6 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
-import { TILE_SIZE, BOARD_PADDING } from "../constants";
+import { BOARD_PADDING } from "../constants";
 import PieceView from "./PieceView";
 
 class PiecesView extends React.Component {
@@ -33,18 +33,27 @@ class PiecesView extends React.Component {
                         onSelect={this.props.onSelect}
                         isSelected={isSeleted}
                         movePos={this.props.movePos}
+                        size={this.props.size}
                     />;
         }
-        return <PieceView x={x} y={y} piece={piece} onSelect={this.props.onSelect} isSelected={isSeleted}/>;
+        return <PieceView
+                    x={x}
+                    y={y}
+                    piece={piece}
+                    onSelect={this.props.onSelect}
+                    isSelected={isSeleted}
+                    levelsView={this.props.levelsView}
+                    size={this.props.size}
+                />;
     }
 
     render() {
         var map = this.props.map;
         var style = {
-            marginLeft: map.startX*TILE_SIZE*-1+BOARD_PADDING,
-            marginTop: map.startY*TILE_SIZE*-1+BOARD_PADDING,
-            width: (map.endX-map.startX+1)*TILE_SIZE+4+(BOARD_PADDING*2),
-            height: (map.endY-map.startY+1)*TILE_SIZE+4+(BOARD_PADDING*2),
+            marginLeft: map.startX*this.props.size*-1+BOARD_PADDING,
+            marginTop: map.startY*this.props.size*-1+BOARD_PADDING,
+            width: (map.endX-map.startX+1)*this.props.size+4+(BOARD_PADDING*2),
+            height: (map.endY-map.startY+1)*this.props.size+4+(BOARD_PADDING*2),
         }
         return <View style={[styles.tile,style,this.props.style]}>
             {this.getPieces()}

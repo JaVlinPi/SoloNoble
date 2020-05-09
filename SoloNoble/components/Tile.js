@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableHighlight } from "react-native";
-import { TILE_SIZE } from "../constants";
+import {  } from "../constants";
 import BoardTile from "../svg/BoardTile";
 import BasicWhite from "../svg/BoardTiles/BasicWhite";
 import BasicYellow from "../svg/BoardTiles/BasicYellow";
@@ -22,10 +22,14 @@ class Tile extends React.Component {
 
     render() {
         var posStyle = {
-            left: this.props.x*TILE_SIZE,
-            top: this.props.y*TILE_SIZE,
+            left: this.props.x*this.props.size,
+            top: this.props.y*this.props.size,
         };
-        var style = [styles.tile,posStyle];
+        var style = [
+            styles.tile,
+            { width: this.props.size, height: this.props.size},
+            posStyle,
+        ];
         var symbol = <BasicWhite/>;
         if ( this.props.value == 2 ) {
             symbol = <BasicYellow/>
@@ -38,7 +42,16 @@ class Tile extends React.Component {
             return <TouchableHighlight style={style} onPress={this.onSelect}>
                 <View>
                     {symbol}
-                    <View style={[styles.tile,styles.selStyle]}/>
+                    <View style={[
+                        styles.tile,
+                        { 
+                            borderRadius: this.props.size,
+                            width: this.props.size*0.8,
+                            height: this.props.size*0.8,
+                            margin: this.props.size*0.1,
+                        },
+                        styles.selStyle
+                    ]}/>
                 </View>
             </TouchableHighlight>;
         }
@@ -54,18 +67,18 @@ const styles = StyleSheet.create({
         position: 'absolute',
         // borderColor: 'black',
         // borderWidth: 1,
-        width: TILE_SIZE,
-        height: TILE_SIZE,
+        // width: this.props.size,
+        // height: this.props.size,
         // backgroundColor: 'white',
 
     },
     selStyle: {
         borderColor: 'blue',
         borderWidth: 10,
-        borderRadius: TILE_SIZE,
-        width: TILE_SIZE*0.8,
-        height: TILE_SIZE*0.8,
-        margin: TILE_SIZE*0.1,
+        // borderRadius: this.props.size,
+        // width: this.props.size*0.8,
+        // height: this.props.size*0.8,
+        // margin: this.props.size*0.1,
         // opacity: 0.4,
     },
     color2: {

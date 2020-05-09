@@ -1,5 +1,7 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, ScrollView } from "react-native";
+import { LEVEL_DATA } from "../../data/Levels";
+import LevelListItem from "../LevelListItem";
 
 class LevelsScreen extends React.Component {
 
@@ -8,9 +10,14 @@ class LevelsScreen extends React.Component {
     }
 
     render() {
-        return <View style={[styles.main]}>
+        return <ScrollView style={styles.main} onScroll={this.onScroll}>
                 <Text>{'Levels Screen'}</Text>
-        </View>;
+                { LEVEL_DATA.beginner.map((data) => {
+                    return (
+                        <LevelListItem data={data} />
+                    );
+                })}
+        </ScrollView>;
     }
 
 }

@@ -85,24 +85,31 @@ class Board extends React.Component {
         // console.log('################### Board.render()');
         var board = this.props.board;
 
+        var tileSize = this.props.levelsView ? TILE_SIZE/2 : TILE_SIZE;
+
         var style = {
-            paddingLeft: board.startX*TILE_SIZE*-1+BOARD_PADDING,
-            paddingTop: board.startY*TILE_SIZE*-1+BOARD_PADDING,
-            width: (board.endX-board.startX+1)*TILE_SIZE+20+(BOARD_PADDING*2),
-            height: (board.endY-board.startY+1)*TILE_SIZE+20+(BOARD_PADDING*2),
+            paddingLeft: board.startX*tileSize*-1+BOARD_PADDING,
+            paddingTop: board.startY*tileSize*-1+BOARD_PADDING,
+            width: (board.endX-board.startX+1)*tileSize+(BOARD_PADDING*2),
+            height: (board.endY-board.startY+1)*tileSize+(BOARD_PADDING*2),
         }
+
 
         return <View style={[styles.tile,style,this.props.style]}>
             <TileMap
                 map={this.props.board}
                 onSelect={this.onTileSelect}
                 selected={this.state.movePos ? null : this.state.selected}
+                levelsView={this.props.levelsView}
+                size={tileSize}
             />
             <PiecesView
                 map={this.props.pieces}
                 onSelect={this.state.movePos ? null : this.onSelect}
                 selected={this.state.selected}
                 movePos={this.state.movePos}
+                levelsView={this.props.levelsView}
+                size={tileSize}
             />
             { this.explosions.length == 0 ? null : this.explosions }
         </View>;
