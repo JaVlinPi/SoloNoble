@@ -17,6 +17,7 @@ class GameView extends React.Component {
         this.onRestart = this.onRestart.bind(this);
         this.onReset = this.onReset.bind(this);
         this.onSave = this.onSave.bind(this);
+        this.onOutput = this.onOutput.bind(this);
         this.addTurn = this.addTurn.bind(this);
         this.minusTurn = this.minusTurn.bind(this);
         this.toggleLastPiece = this.toggleLastPiece.bind(this);
@@ -34,11 +35,11 @@ class GameView extends React.Component {
             tileMap: tileMap,
             // pieceMap: pieceMap,
             pieceMap: PieceData.getArray2D(),
-            moveNum: 10,
+            moveNum: 2,
             keepSmall: true,
             showLastPiece: true,
             showLastTile: true,
-            showDeadTiles: false,
+            showDeadTiles: true,
         }
 
         this.createLevel();
@@ -218,6 +219,12 @@ class GameView extends React.Component {
         
     }
 
+    onOutput() {
+        console.log('onOutput()');
+        console.log('this.state.tileMap.toString():',this.state.tileMap.toString());
+        console.log('PieceData.toString():',PieceData.toString());
+    }
+
 
     addTurn() {
         this.setState({
@@ -300,7 +307,8 @@ class GameView extends React.Component {
             <View style={styles.row}>
                 <BasicButton text="Regen" style={styles.button} onPress={this.onReset}/>
                 <BasicButton text="Restart" style={styles.button} onPress={this.onRestart}/>
-                <BasicButton text="Save" style={styles.button} onPress={this.onSave}/>
+                {/* <BasicButton text="Save" style={styles.button} onPress={this.onSave}/> */}
+                <BasicButton text="Output" style={styles.button} onPress={this.onOutput}/>
             </View>
         </View>;
     }
