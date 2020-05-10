@@ -14,6 +14,11 @@ class LevelListItem extends React.Component {
 
     onSelect() {
         console.log('LevelListItem.onSelect()')
+        console.log('this.props.data:',this.props.data);
+        this.props.navigation.navigate('Game', {
+            levelGroup: this.props.data.levelGroup,
+            levelIndex: this.props.data.levelIndex,
+        });
     }
 
     render() {

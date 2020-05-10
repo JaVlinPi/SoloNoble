@@ -10,11 +10,19 @@ class LevelsScreen extends React.Component {
     }
 
     render() {
+        var levelGroup = 'beginner';
         return <ScrollView style={styles.main} onScroll={this.onScroll}>
                 <Text>{'Levels Screen'}</Text>
-                { LEVEL_DATA.beginner.map((data) => {
+                { LEVEL_DATA[levelGroup].map((data, index) => {
                     return (
-                        <LevelListItem data={data} />
+                        <LevelListItem
+                            data={{
+                                ...data,
+                                levelIndex: index,
+                                levelGroup: levelGroup,
+                            }}
+                            navigation={this.props.navigation}
+                        />
                     );
                 })}
         </ScrollView>;

@@ -31,6 +31,7 @@ import PuzzleGenScreen from './components/screens/PuzzleGenScreen';
 import LevelDataController from './com/controller/LevelDataController';
 import Popup from './components/Popup';
 import LevelsScreen from './components/screens/LevelsScreen';
+import GameScreen from './components/screens/GameScreen';
 
 console.log('+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+');
 
@@ -61,8 +62,9 @@ class App extends React.Component {
     return (
       <NavigationContainer>
         <Stack.Navigator headerMode={'none'}>
-          <Stack.Screen name="PuzzleGen" component={PuzzleGenScreen} />
+          {/* <Stack.Screen name="PuzzleGen" component={PuzzleGenScreen} /> */}
           <Stack.Screen name="Levels" component={LevelsScreen} />
+          <Stack.Screen name="Game" component={GameScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     );
