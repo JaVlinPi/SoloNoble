@@ -8,6 +8,8 @@ import PieceData from "../../com/model/PieceData";
 import { LEVEL_DATA } from "../../data/Levels";
 import UIButton from "../UIButton";
 
+const MENU_BTN_SIZE = 40;
+
 class GameScreen extends React.Component {
 
     constructor(props) {
@@ -105,8 +107,9 @@ class GameScreen extends React.Component {
                     </Text>
                 </View>
                 <UIButton
-                    text={'MENU'}
+                    text={'☰'}
                     onPress={this.showMenu}
+                    style={{width: MENU_BTN_SIZE, height: MENU_BTN_SIZE}}
                 />
             </View>
             <ScrollView
@@ -153,6 +156,9 @@ const styles = StyleSheet.create({
         elevation: 5,
         flexDirection: 'row',
         justifyContent: 'space-between',
+        alignItems: 'center',
+        borderBottomWidth: 1,
+        borderColor: '#888888',
     },
     headerText: {
         color: 'white',

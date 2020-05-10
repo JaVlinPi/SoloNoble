@@ -11,7 +11,7 @@ class BasicButton extends React.Component {
         return <TouchableHighlight
                     onPress={this.props.onPress}
                     style={{...styles.button,...this.props.style}}>
-            <Text>{this.props.text}</Text>
+            <Text style={this.props.textStyle}>{this.props.text}</Text>
         </TouchableHighlight>;
     }
 
