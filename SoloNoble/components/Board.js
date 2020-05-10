@@ -123,7 +123,7 @@ class Board extends React.Component {
 
 const styles = StyleSheet.create({
     tile: {
-        // borderColor: 'green',
+        // borderColor: 'orange',
         // borderWidth: 10,
         overflow: 'visible',
         position: 'relative',

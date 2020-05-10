@@ -6,6 +6,7 @@ import Board from "../Board";
 import BasicButton from "../BasicButton";
 import PieceData from "../../com/model/PieceData";
 import { LEVEL_DATA } from "../../data/Levels";
+import UIButton from "../UIButton";
 
 class GameScreen extends React.Component {
 
@@ -16,6 +17,8 @@ class GameScreen extends React.Component {
         console.log(':::::::::::::::::::::::::::::');
 
         this.onRestart = this.onRestart.bind(this);
+        this.onBodyLayout = this.onBodyLayout.bind(this);
+        this.onInnerBodyLayout = this.onInnerBodyLayout.bind(this);
 
         console.log('props.route.params:',props.route.params);
         var levelGroup = props.route.params.levelGroup;
@@ -35,6 +38,8 @@ class GameScreen extends React.Component {
         PieceData.loadFromString(levelData.pieces);
 
         this.state = {
+            levelGroup: levelGroup,
+            levelNum: levelIndex+1,
             tileMap: tileMap,
             pieceMap: PieceData.getArray2D(),
         }
@@ -51,21 +56,81 @@ class GameScreen extends React.Component {
         Board.clearSelection();
     }
 
+    showMenu() {
+        console.log('showMenu()');
+    }
+
+    onBodyLayout(e) {
+        console.log('onBodyLayout(e)');
+        // console.log('e.nativeEvent:',e.nativeEvent);
+        console.log('e.nativeEvent.layout.height:',e.nativeEvent.layout.height);
+        this.setState({
+            bodyHeight: e.nativeEvent.layout.height,
+        });
+    }
+
+    onInnerBodyLayout(e) {
+        console.log('onInnerBodyLayout(e)');
+        // console.log('e.nativeEvent:',e.nativeEvent);
+        console.log('e.nativeEvent.layout.height:',e.nativeEvent.layout.height);
+        this.setState({
+            innerHeight: e.nativeEvent.layout.height,
+        });
+    }
+
     render() {
         // return null;
         // console.log('this.state:',this.state);
+        var innerScrollStyles = [
+            styles.scroll,
+            // { borderColor:'blue' },
+        ];
+        if ( this.state.innerHeight <= this.state.bodyHeight ) {
+            innerScrollStyles.push({height:this.state.bodyHeight});
+        }
         return <View style={[styles.main]}>
-            <ScrollView nestedScrollEnabled style={styles.scroll} onScroll={this.onScroll}>
-                <ScrollView nestedScrollEnabled style={styles.scroll} onScroll={this.onScroll} horizontal>
+            <View style={styles.header}>
+                <View>
+                    <Text style={[
+                        styles.headerText,
+                        styles.headerText1,
+                    ]}>
+                        {this.state.levelGroup.toUpperCase()}
+                    </Text>
+                    <Text style={[
+                        styles.headerText,
+                        styles.headerText2,
+                    ]}>
+                        {'LEVEL '+this.state.levelNum}
+                    </Text>
+                </View>
+                <UIButton
+                    text={'MENU'}
+                    onPress={this.showMenu}
+                />
+            </View>
+            <ScrollView
+                nestedScrollEnabled
+                style={styles.scroll}
+                contentContainerStyle={styles.scrollContent}
+                onLayout={this.onBodyLayout}
+            >
+                <ScrollView
+                    nestedScrollEnabled
+                    style={innerScrollStyles}
+                    contentContainerStyle={styles.scrollContent}
+                    horizontal
+                    onLayout={this.onInnerBodyLayout}
+                >
                     <Board
                         board={this.state.tileMap}
                         pieces={this.state.pieceMap}
+                        disable={this.state.isDisabled}
                     />
                 </ScrollView>
             </ScrollView>
         </View>;
     }
-
 }
 
 const styles = StyleSheet.create({
@@ -73,9 +138,34 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
         borderColor: 'red',
-        borderWidth: 1,
+        // borderWidth: 1,
         overflow: 'visible',
-        position: 'relative'
+        position: 'relative',
+        backgroundColor: '#eeeeee',
+    },
+    header: {
+        padding: 10,
+        backgroundColor: '#999999',
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 1 },
+        shadowOpacity: 0.8,
+        shadowRadius: 1,
+        elevation: 5,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+    },
+    headerText: {
+        color: 'white',
+        fontWeight: 'bold',
+        textShadowColor: 'black',
+        textShadowOffset: {width: -1, height: 1},
+        textShadowRadius: 1,
+    },
+    headerText1: {
+        fontSize: 24,
+    },
+    headerText2: {
+        fontSize: 18,
     },
     board: {
         // width: 100,
@@ -84,10 +174,20 @@ const styles = StyleSheet.create({
     scroll: {
         // width: '100%',
         // height: '100%',
-        // borderColor: 'green',
+        borderColor: 'green',
+        // borderWidth: 2,
+        // overflow: 'visible',
+        // position: 'relative'
+    },
+    scrollContent: {
+        minWidth: '100%',
+        // minHeight: '100%',
+        borderColor: 'yellow',
         // borderWidth: 1,
         // overflow: 'visible',
         // position: 'relative'
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     row: {
         flexDirection: 'row',
