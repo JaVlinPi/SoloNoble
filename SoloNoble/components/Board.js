@@ -60,7 +60,8 @@ class Board extends React.Component {
             }
         });
         setTimeout(()=>{
-            PieceData.getArray2D().delete(x,y);
+            // PieceData.getArray2D().delete(x,y);
+            PieceData.delete(x,y);
             this.createExplosion(x,y);
         },PIECE_MOVE_DURATION); // extra time prevents glitching
         setTimeout(()=>{
@@ -68,6 +69,9 @@ class Board extends React.Component {
             this.setState({
                 movePos: null,
             });
+            if ( this.props.onMoveComplete ) {
+                this.props.onMoveComplete();
+            }
         },PIECE_MOVE_DURATION+200); // extra time prevents glitching
     }
 

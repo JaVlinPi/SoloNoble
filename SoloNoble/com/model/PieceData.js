@@ -22,6 +22,17 @@ class PieceData {
         return pieces;
     }
 
+    static delete(x,y) {
+        pieceMap.delete(x,y);
+        var i = pieces.findIndex((data)=>{
+            return data.x == x && data.y == y;
+        });
+        console.log('i:',i);
+        if ( i != -1 ) {
+            pieces.splice(i,1);
+        }
+    }
+
     static clear() {
         pieceMap.clear();
         pieces = [];
@@ -41,6 +52,10 @@ class PieceData {
             // this.set(cell[0],cell[1],cell[2]);
             PieceData.create(cell[0],cell[1],cell[2]);
         }
+    }
+
+    static getLength() {
+        return pieceMap.getLength();
     }
 
     constructor(x,y,value) {

@@ -21,6 +21,7 @@ class GameScreen extends React.Component {
         this.onRestart = this.onRestart.bind(this);
         this.onBodyLayout = this.onBodyLayout.bind(this);
         this.onInnerBodyLayout = this.onInnerBodyLayout.bind(this);
+        this.onMoveComplete = this.onMoveComplete.bind(this);
 
         console.log('props.route.params:',props.route.params);
         var levelGroup = props.route.params.levelGroup;
@@ -42,6 +43,8 @@ class GameScreen extends React.Component {
         this.state = {
             levelGroup: levelGroup,
             levelNum: levelIndex+1,
+            hasNoble: levelData.hasNoble,
+            hasLastTile: levelData.hasLastTile,
             tileMap: tileMap,
             pieceMap: PieceData.getArray2D(),
         }
@@ -78,6 +81,29 @@ class GameScreen extends React.Component {
         this.setState({
             innerHeight: e.nativeEvent.layout.height,
         });
+    }
+
+    onMoveComplete() {
+        console.log('onMoveComplete()');
+        // check if win
+        console.log('PieceData.getLength():',PieceData.getLength());
+        console.log('PieceData.getPieces():',PieceData.getPieces());
+        // if ( PieceData.getLength() == 1 ) {
+        //     var lastPiece = PieceData.getPieces()[0];
+        //     console.log('lastPiece:',lastPiece);
+        //     if ( this.state.hasNoble ) {
+        //         // check if last piece is noble
+
+        //     }
+        //     else {
+        //         if ( this.state.hasLastTile ) {
+
+        //         }
+        //         else {
+        //             // win
+        //         }
+        //     }
+        // }
     }
 
     render() {
@@ -129,6 +155,7 @@ class GameScreen extends React.Component {
                         board={this.state.tileMap}
                         pieces={this.state.pieceMap}
                         disable={this.state.isDisabled}
+                        onMoveComplete={this.onMoveComplete}
                     />
                 </ScrollView>
             </ScrollView>

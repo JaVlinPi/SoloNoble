@@ -17,7 +17,11 @@ class UIButton extends React.Component {
             position:'absolute',
             backgroundColor:'#666666',
             borderColor: '#444444',
-            top:BUTTON_DEPTH
+            top:BUTTON_DEPTH,
+            // borderWidth: 6,
+            width: buttonStyle.width+1,
+            // width: buttonStyle.width+2,
+            left: -0.5,
         };
         return <View>
                 <View style={underStyle}/>

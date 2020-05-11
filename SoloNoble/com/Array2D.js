@@ -99,6 +99,10 @@ class Array2D {
     console.log('Y: '+this.startY+' - '+this.endY);
   }
 
+  getLength() {
+    return this._coords.length;
+  }
+
   toString() {
     var returnStr = '';
     var c, v;
