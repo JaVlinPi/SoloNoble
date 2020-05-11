@@ -7,6 +7,7 @@ import BasicButton from "../BasicButton";
 import PieceData from "../../com/model/PieceData";
 import { LEVEL_DATA } from "../../data/Levels";
 import UIButton from "../UIButton";
+import Popup from "../Popup";
 
 const MENU_BTN_SIZE = 40;
 
@@ -22,6 +23,8 @@ class GameScreen extends React.Component {
         this.onBodyLayout = this.onBodyLayout.bind(this);
         this.onInnerBodyLayout = this.onInnerBodyLayout.bind(this);
         this.onMoveComplete = this.onMoveComplete.bind(this);
+        this.showWin = this.showWin.bind(this);
+        this.showLose = this.showLose.bind(this);
 
         console.log('props.route.params:',props.route.params);
         var levelGroup = props.route.params.levelGroup;
@@ -86,24 +89,33 @@ class GameScreen extends React.Component {
     onMoveComplete() {
         console.log('onMoveComplete()');
         // check if win
-        console.log('PieceData.getLength():',PieceData.getLength());
+        // console.log('PieceData.getLength():',PieceData.getLength());
         console.log('PieceData.getPieces():',PieceData.getPieces());
-        // if ( PieceData.getLength() == 1 ) {
-        //     var lastPiece = PieceData.getPieces()[0];
-        //     console.log('lastPiece:',lastPiece);
-        //     if ( this.state.hasNoble ) {
-        //         // check if last piece is noble
+        console.log('PieceData.getPieces().length:',PieceData.getPieces().length);
+        var pieces = PieceData.getPieces();
+        if ( pieces.length == 1 ) {
+            var lastPiece = pieces[0];
+            console.log('lastPiece:',lastPiece);
+            var nobleCheck = !this.state.hasNoble || lastPiece.value == 2;
+            console.log('nobleCheck:',nobleCheck);
+            var lastTileCheck = !this.state.hasLastTile ||
+                        ( lastPiece.x == 0 && lastPiece.y == 0 );
+            console.log('lastTileCheck:',lastTileCheck);
+            if ( nobleCheck && lastTileCheck ) {
+                this.showWin();
+            }
+            else {
+                this.showLose();
+            }
+        }
+    }
 
-        //     }
-        //     else {
-        //         if ( this.state.hasLastTile ) {
+    showWin() {
+        console.log('showWin()');
+    }
 
-        //         }
-        //         else {
-        //             // win
-        //         }
-        //     }
-        // }
+    showLose() {
+        console.log('showLose()');
     }
 
     render() {
@@ -159,6 +171,11 @@ class GameScreen extends React.Component {
                     />
                 </ScrollView>
             </ScrollView>
+            { this.state.gameEnded ?
+                <Popup>
+                    <Text>{this.state.endGameMessage}</Text>
+                </Popup>
+            : null }
         </View>;
     }
 }
