@@ -21,7 +21,8 @@ class UIButton extends React.Component {
             // borderWidth: 6,
             width: buttonStyle.width+1,
             // width: buttonStyle.width+2,
-            left: -0.5,
+            borderWidth: 1.5,
+            left: -0.4,
         };
         return <View>
                 <View style={underStyle}/>
@@ -55,6 +56,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 10,
+        width: 100,
         // borderBottomWidth: BUTTON_DEPTH,
         // paddingBottom: BUTTON_DEPTH,
         // borderBottomRightRadius: 12,
@@ -63,6 +65,9 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold',
         color: 'white',
+        textShadowColor: 'black',
+        textShadowOffset: {width: -0.5, height: -0.5},
+        textShadowRadius: 1,
     }
 });
 

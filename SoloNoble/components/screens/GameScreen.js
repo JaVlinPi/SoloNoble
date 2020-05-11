@@ -19,13 +19,22 @@ class GameScreen extends React.Component {
         console.log(':::::::::::::::::::::::::::::');
         console.log(':::::::::::::::::::::::::::::');
 
+        this.loadLevel = this.loadLevel.bind(this);
+        this.onReplay = this.onReplay.bind(this);
         this.onRestart = this.onRestart.bind(this);
         this.onBodyLayout = this.onBodyLayout.bind(this);
         this.onInnerBodyLayout = this.onInnerBodyLayout.bind(this);
         this.onMoveComplete = this.onMoveComplete.bind(this);
         this.showWin = this.showWin.bind(this);
         this.showLose = this.showLose.bind(this);
+        this.gotoNextLevel = this.gotoNextLevel.bind(this);
 
+        console.log('props.route.params:',props.route.params);
+        var levelGroup = props.route.params.levelGroup;
+        var levelIndex = props.route.params.levelIndex;
+        this.loadLevel(levelGroup,levelIndex,true);
+
+        /*
         console.log('props.route.params:',props.route.params);
         var levelGroup = props.route.params.levelGroup;
         var levelIndex = props.route.params.levelIndex;
@@ -53,6 +62,47 @@ class GameScreen extends React.Component {
         }
 
         this.onRestart();
+        */
+    }
+
+    loadLevel(levelGroup,levelIndex,isInit) {
+        var isInit = isInit || false;
+        this.levelGroup = levelGroup;
+        this.levelIndex = levelIndex;
+
+        var levelData = LEVEL_DATA[levelGroup][levelIndex];
+        console.log('levelData:',levelData);
+
+        this.curLvlData = {
+            boardStartStr: levelData.board,
+            piecesStartStr: levelData.pieces,
+        };
+        
+        var tileMap = new Array2D();
+        tileMap.loadString(levelData.board);
+        PieceData.clear();
+        PieceData.loadFromString(levelData.pieces);
+        
+
+        if ( isInit ) {
+            this.state = {
+                levelGroup: levelGroup,
+                levelNum: levelIndex+1,
+                hasNoble: levelData.hasNoble,
+                hasLastTile: levelData.hasLastTile,
+                tileMap: tileMap,
+                pieceMap: PieceData.getArray2D(),
+            }
+            this.onRestart();
+        }
+        else {
+            this.onRestart();
+            this.setState({
+                gameEnded: null,
+                isDisabled: false,
+            });
+        }
+
     }
 
     onRestart() {
@@ -62,6 +112,14 @@ class GameScreen extends React.Component {
         this.state.tileMap.clear();
         this.state.tileMap.loadString(this.curLvlData.boardStartStr);
         Board.clearSelection();
+    }
+
+    onReplay() {
+        this.onRestart();
+        this.setState({
+            gameEnded: false,
+            isDisabled: false,
+        });
     }
 
     showMenu() {
@@ -112,10 +170,20 @@ class GameScreen extends React.Component {
 
     showWin() {
         console.log('showWin()');
+        this.setState({
+            gameEnded: 'win',
+            isDisabled: true,
+            endGameMessage: 'You Won!',
+        });
     }
 
     showLose() {
         console.log('showLose()');
+    }
+
+    gotoNextLevel() {
+        console.log('gotoNextLevel()');
+        this.loadLevel(this.levelGroup,this.levelIndex+1);
     }
 
     render() {
@@ -127,6 +195,15 @@ class GameScreen extends React.Component {
         ];
         if ( this.state.innerHeight <= this.state.bodyHeight ) {
             innerScrollStyles.push({height:this.state.bodyHeight});
+        }
+        var endButtons = [];
+        if ( this.state.gameEnded ) {
+            if ( this.state.gameEnded == 'win' ) {
+                endButtons = [
+                    <UIButton text='Replay' onPress={this.onReplay} style={styles.endButton}/>,
+                    <UIButton text='Next Level' onPress={this.gotoNextLevel} style={styles.endButton}/>
+                ];
+            }
         }
         return <View style={[styles.main]}>
             <View style={styles.header}>
@@ -172,8 +249,11 @@ class GameScreen extends React.Component {
                 </ScrollView>
             </ScrollView>
             { this.state.gameEnded ?
-                <Popup>
-                    <Text>{this.state.endGameMessage}</Text>
+                <Popup innerStyle={styles.endPopup}>
+                    <Text style={styles.endText}>
+                        {this.state.endGameMessage}
+                    </Text>
+                    {endButtons}
                 </Popup>
             : null }
         </View>;
@@ -239,19 +319,18 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    row: {
-        flexDirection: 'row',
+    endPopup: {
+        flexDirection: 'column',
+        justifyContent: 'center',
         alignItems: 'center',
-        // justifyContent: 'space-between',
     },
-    button: {
-        width: 100,
+    endText: {
+        fontSize: 40,
+        marginBottom: 10,
     },
-    smallBtn: {
-        width: 30,
-    },
-    mediumBtn: {
-        width: 60,
+    endButton: {
+        width: 140,
+        height: 40,
     }
 });
 

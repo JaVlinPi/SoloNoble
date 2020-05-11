@@ -1,6 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableHighlight } from "react-native";
-import { TILE_SIZE } from "../constants";
+import { View, StyleSheet } from "react-native";
 
 class Popup extends React.Component {
 
@@ -10,8 +9,10 @@ class Popup extends React.Component {
 
     render() {
         return <View style={styles.fade}>
-                    <View style={styles.body}>
-                        {this.props.children}
+                    <View style={{...styles.body,...this.props.style}}>
+                        <View style={{...styles.bodyInner,...this.props.innerStyle}}>
+                            {this.props.children}
+                        </View>
                     </View>
             </View>;
     }
@@ -26,11 +27,25 @@ const styles = StyleSheet.create({
         height: '100%',
         justifyContent: 'center',
         alignItems: 'center',
+        elevation: 6,
     },
     body: {
-        backgroundColor: 'white',
-        borderColor: 'grey',
+        backgroundColor: '#cccccc',
+        borderColor: '#555555',
         borderWidth: 1,
+        borderRadius: 14,
+        padding: 5,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 1 },
+        shadowOpacity: 0.8,
+        shadowRadius: 1,
+        elevation: 5,
+    },
+    bodyInner: {
+        backgroundColor: 'white',
+        borderColor: '#999999',
+        borderWidth: 3,
+        borderRadius: 10,
         padding: 10,
     }
 });
